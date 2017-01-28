@@ -16,8 +16,7 @@ https://developer.android.com/studio/index.html 사이트 접속하여 Android S
   - iii. Android SDK Manger 실행 결과
   ![](images/android-intro-lab-sdkm3.png)
 
-* SDK Manager를 이용하여 최신 도구와 플랫폼 설치
-  다음 도구와 플랫폼이 최신 버전으로 설치되었는지 확인
+* SDK Manager를 이용하여 최신 도구와 플랫폼 설치, 다음 도구와 플랫폼이 최신 버전으로 설치되었는지 확인
   - Tools
     - Android SDK Tools
     - Android SDK Platform-tools
