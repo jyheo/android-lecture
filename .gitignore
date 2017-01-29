@@ -1,3 +1,8 @@
+# exclude html
+*.html
+# but include boilerplate.html
+!boilerplate.html
+
 # Built application files
 *.apk
 *.ap_
