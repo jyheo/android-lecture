@@ -7,7 +7,7 @@ class: center, middle
 # 안드로이드 UI
 
 ---
-# 화면 크기를 고려한 디자인
+## 화면 크기를 고려한 디자인
 
 * 기기마다 다른 크기, 해상도, 비율
   * 크기, 해상도에 따라 이미지 크기를 다르게 사용
@@ -23,7 +23,7 @@ class: center, middle
 UI요소: Button, EditText, TextView, LinearLayout, ...
 
 ---
-# UI 요소 크기
+## UI 요소 크기
 * 모든 UI요소들은 가로,세로 크기를 지정할 수 있음
 * layout_width
 * layout_height
@@ -33,7 +33,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
     * 특정 값 – 예를 들어 300dp
 
 ---
-# UI 요소 크기 - Example
+## UI 요소 크기 - Example
 
 .left-column-70[
 ```xml
@@ -62,7 +62,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/ui_component_size.xml]
 
 ---
-# 레이아웃(Layout)
+## 레이아웃(Layout)
 
 레이아웃은 사용자 인터페이스에 대한 시각적 구조를 정의합니다. 예컨대 액티비티 또는 앱 위젯에 대한 UI가 이에 해당됩니다.
 .right[출처: https://developer.android.com/guide/topics/ui/declaring-layout.html]
@@ -78,7 +78,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
   * FrameLayout, GridLayout, TableLayout
 
 ---
-# LinearLayout or RelativeLayout
+## LinearLayout or RelativeLayout
 
 .left-column-70[
 * LinearLayout(선형 레이아웃)
@@ -95,7 +95,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 ]
 
 ---
-# LinearLayout - Example(1/2)
+## LinearLayout - Example(1/2)
 .left-column-70[
 ```xml
 <LinearLayout
@@ -135,7 +135,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/activity_main.xml]
 
 ---
-# LinearLayout - Example(2/2)
+## LinearLayout - Example(2/2)
 .left-column-70[
 ```xml
     <LinearLayout
@@ -172,9 +172,9 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 
 ---
 class: center, middle
-# 뷰(View)와 ViewGroup
+## 뷰(View)와 ViewGroup
 ---
-# 뷰(View)
+## 뷰(View)
 * 모든 UI요소들은 뷰(View)를 상속하여 구현
 * 윈도우 GUI에서 윈도우(CWnd)와 동일한 개념
 * 화면에 표시 가능한 사각형 영역
@@ -185,14 +185,14 @@ class: center, middle
   * Invisible – 자리는 있지만 보이지는 않음
 
 ---
-# View/ViewGroup으로 UI 구성
+## View/ViewGroup으로 UI 구성
 * ViewGroup는 View이지만 다른 View를 포함할 수 있는 View
   * LinearLayout이나 RelativeLayout도 ViewGroup
 * View로 구성된 트리로 UI가 구성됨
 .center[![View Group](images/viewgroup.png)]
 
 ---
-# 자주 사용되는 View(UI요소들)
+## 자주 사용되는 View(UI요소들)
 .left-column-50[
 * Views
   * TextView
@@ -218,7 +218,7 @@ class: center, middle
 ]
 
 ---
-# TextView와 EditText
+## TextView와 EditText
 * 기본적인 텍스트 표시/입력 뷰
 * TextView – 사용자가 수정할 수 없으나 코드에서 텍스트를 변경할 수 있음
 * EditText – 사용자가 입력 가능함
@@ -226,7 +226,7 @@ class: center, middle
 ![EditText](images/edittext.png)
 
 ---
-# Button
+## Button
 * 일반적으로 많이 사용되는 푸시 버튼
 * 버튼내에 텍스트, 아이콘을 표시할 수 있음
   * 버튼 전체를 이미지로 그리기 위해서는 ImageButton 사용
@@ -235,7 +235,7 @@ class: center, middle
 ![Button](images/button.png)
 
 ---
-# CompoundButton
+## CompoundButton
 * 두 개의 상태를 갖는 버튼
   * 체크/미체크, 온/오프
 
@@ -249,14 +249,14 @@ RadioButtons | ![](images/radiobutton.png)
 ---
 class: center, middle
 
-# Margin, Padding, Gravity
+## Margin, Padding, Gravity
 
 ---
-# Margin, padding
+## Margin, padding
 .cetner[![Margin, Padding](images/marginpadding.png)]
 
 ---
-# Margin, Padding, Gravity Example
+## Margin, Padding, Gravity Example
 .left-column-70[
 ```xml
 <LinearLayout
@@ -290,7 +290,7 @@ padding은 해당 뷰의 내부 여백을 지정
 내부의 버튼의 크기가 match_parent임에도 불구하고 레이아웃의 padding=10dp이므로 레이아웃의 배경색인 보라색이 약간 보이게 되는 것임
 
 ---
-# Gravity
+## Gravity
 * 부모 뷰 안에 포함되는 자식 뷰의 위치를 결정하는 속성
 * LinearLayout/FrameLayout의 자식 뷰에서 layout_gravity 속성으로 흔히 사용
 * 가능한 값들들
@@ -351,10 +351,10 @@ padding은 해당 뷰의 내부 여백을 지정
 
 ---
 class: center, middle
-# 이벤트 처리
+## 이벤트 처리
 
 ---
-# 이벤트 리스너(Event Listeners)
+## 이벤트 리스너(Event Listeners)
 * 이벤트를 처리할 콜백 메소드를 포함하는 인터페이스
 * 사용자가 뷰를 사용하여 상호작용할 때 안드로이드 프레임워크에 의해 호출됨
   * 버튼을 눌렀을 때 처리
@@ -364,7 +364,7 @@ class: center, middle
 <img src="images/eventlistener.png" width=420 style="bottom: 50px; right: 100px; position: absolute">
 
 ---
-# Event Listener Interface
+## Event Listener Interface
 * View.OnClickListener – 뷰를 클릭했을 때 콜백
 * View.OnLongClickListener – 뷰를 오래 눌렀을 때(롱 클릭) 콜백
 * View.OnFocusChangeListener – 뷰에 입력 포커스가 변경됐을 때 콜백
@@ -373,7 +373,7 @@ class: center, middle
 * View.onCreateContextMenu – 롱 클릭으로 컨텍스트 메뉴가 생성될 때 호출되는 콜백 인터페이스
 
 ---
-# Event Listener Example
+## Event Listener Example
 .left-column-70[
 ```java
 public class MainActivity extends AppCompatActivity {
