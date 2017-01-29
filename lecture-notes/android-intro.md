@@ -50,14 +50,7 @@ class: center, middle
     - 안드로이드 앱 실행을 위한 Linux 커널 기반 모바일 운영체제
     - 안드로이드 앱 개발을 위한 강력한 개발 프레임워크(Libraries, Application Framework)
 
-<div class="mermaid">
-    graph BT
-        A[안드로이드 모바일 플랫폼] -- 앱 실행 --> B((앱<br/>사용자))
-        A --앱 개발 --> C((앱<br/>개발자))
-        A --플랫폼 코어 개발 --> D((구글))
-        A --통신 관련 모듈 개발 --> E((통신사))
-        A --하드웨어 관련 모듈 개발 --> F((제조사))
-</div>
+<img src="images/androidplatform.png" style="display:block; margin: auto;">
 
 ---
 # 안드로이드 개요
