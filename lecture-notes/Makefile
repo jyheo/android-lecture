@@ -1,4 +1,4 @@
-TARGETS=android-ui.html android-intro.html
+TARGETS=android-ui.html android-intro.html adapter-view.html
 
 all: $(TARGETS)
 
