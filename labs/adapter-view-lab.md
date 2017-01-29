@@ -31,4 +31,5 @@
      listView.setDivider(new ColorDrawable(Color.RED));
      listView.setDividerHeight(5);
 ```
-* (참고자료) https://github.com/kwanu70/AndroidExamples/blob/master/chap3/ListViewTest/app/src/main/java/com/example/kwanwoo/listviewtest/MainActivity.java 의 38-40 번째 줄
+* (참고자료) 
+https://github.com/kwanu70/AndroidExamples/blob/master/chap3/ListViewTest/app/src/main/java/com/example/kwanwoo/listviewtest/MainActivity.java#L38-L40
