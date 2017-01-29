@@ -25,7 +25,7 @@ class: center, middle
 ## 어댑터(Adapter)
 * 어댑터는 데이터를 관리하며 데이터 원본과 어댑터 뷰(ListView, GridView) 사이의 중계 역할
 
-.center[<img src="images/adapter2.png" width=90%>]
+<img src="images/adapter2.png" width=90% style="display:block; margin: auto;">
 
 ---
 ## 어댑터 종류
