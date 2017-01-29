@@ -130,6 +130,8 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 <img src="images/linearlayoutex.png" width=220>
 ]
 
+<img src="images/arrowright.png" width=50 style="top:200px; right:350px; position:absolute;">
+
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/activity_main.xml]
 
 ---
@@ -163,6 +165,8 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 .right[
 <img src="images/linearlayoutex.png" width=220>
 ]
+
+<img src="images/arrowright.png" width=50 style="top:400px; right:350px; position:absolute;">
 
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/activity_main.xml]
 
@@ -234,12 +238,13 @@ class: center, middle
 # CompoundButton
 * 두 개의 상태를 갖는 버튼
   * 체크/미체크, 온/오프
-<table>
-<tr><td>ToggleButton </td><td> <img src="images/togglebutton.png"> </td></tr>
-<tr><td>Switch       </td><td> <img src="images/switchbutton.png"> </td></tr>
-<tr><td>CheckBox     </td><td> <img src="images/checkbox.png"> </td></tr>
-<tr><td>RadioButtons </td><td> <img src="images/radiobutton.png"> </td></tr>
-</table>
+
+CompoundButton | 모양  
+-------------|------------------------------------
+ToggleButton | ![](images/togglebutton.png)
+Switch       | ![](images/switchbutton.png)
+CheckBox     | ![](images/checkbox.png)
+RadioButtons | ![](images/radiobutton.png)
 
 ---
 class: center, middle
@@ -273,6 +278,8 @@ class: center, middle
 .right[
 <img src="images/marginpaddinggravity.png" width=220>
 ]
+
+<img src="images/arrowright.png" width=50 style="top:200px; right:350px; position:absolute;">
 
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/margin_padding_gravity.xml]
 
@@ -336,6 +343,8 @@ padding은 해당 뷰의 내부 여백을 지정
 .right[
 <img src="images/marginpaddinggravity.png" width=220>
 ]
+
+<img src="images/arrowright.png" width=50 style="top:350px; right:350px; position:absolute;">
 
 ???
 실행 화면의 아래쪽 빨간색 배경의 레이아웃에 대한 xml코드임
