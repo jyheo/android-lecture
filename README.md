@@ -20,7 +20,7 @@ Lecture Notes | Labs
 [Android UI](https://jyheo.github.io/android-lecture/android-ui.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/android-ui-lab.md)
 [Adapter View](https://jyheo.github.io/android-lecture/adapter-view.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/adapter-view-lab.md)
 [Activity and Intent](https://jyheo.github.io/android-lecture/activity-intent.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/activity-intent-lab.md)
-[Fragment](https://jyheo.github.io/android-lecture/fragment.html) | [Lab]((https://github.com/jyheo/android-lecture/blob/master/labs/fragment-lab.md))
+[Fragment](https://jyheo.github.io/android-lecture/fragment.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/fragment-lab.md)
 ActionBar and Navigation | Lab
 Data management | Lab
 Location based service | Lab
