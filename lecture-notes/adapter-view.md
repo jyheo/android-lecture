@@ -31,14 +31,14 @@ class: center, middle
 ## 어댑터 종류
 .left-column-50[
 * BaseAdapter
-  - 어댑터 클래스의 공통 구현, 커스텀 어댑터 구현시 사용
+    - 어댑터 클래스의 공통 구현, 커스텀 어댑터 구현시 사용
 * ArrayAdapter<T>
-  - 객체 배열이나 리소스에 정의된 배열로부터 데이터를 공급받음
+    - 객체 배열이나 리소스에 정의된 배열로부터 데이터를 공급받음
 * CursorAdapter
-  - 데이터베이스로부터 데이터를 공급받음
+    - 데이터베이스로부터 데이터를 공급받음
 * SimpleAdapter
-  - 데이터를 Map(키,값)의 리스트로 관리
-  - 데이터를 XML 파일에 정의된 뷰에 대응시키는 어댑터
+    - 데이터를 Map(키,값)의 리스트로 관리
+    - 데이터를 XML 파일에 정의된 뷰에 대응시키는 어댑터
 ]
 
 .right-column-50[
@@ -51,10 +51,10 @@ class: center, middle
 
 * 리스트 뷰 설정 절차
 
-  1. XML 레이아웃에 ListView 정의
-  2. 어댑터 생성
-  3. ListView 객체에 어댑터 연결
-    - void setAdapter (T adapter)
+    1. XML 레이아웃에 ListView 정의
+    2. 어댑터 생성
+    3. ListView 객체에 어댑터 연결
+        - void setAdapter (T adapter)
 
 <img src="images/listview.png" width=400 style="bottom: 100px; right: 150px; position: absolute">
 
@@ -82,9 +82,9 @@ class: center, middle
 ## 리스트 뷰:어댑터 준비
 * 데이터 원본이 배열인 경우에 다음 생성자로 어댑터를 초기화  
 ArrayAdapter(Context **context**, int **textViewResourceId**, T[] **objects**)
-  - **context** 는 현재 액티비티를 컨텍스트로 넘겨준다.
-  - **textViewResourceId** 는 항목으로 표시될 텍스트 뷰의 리소스 ID이다
-  - **objects** 는 어댑터로 공급될 데이터 원본으로 단순 배열
+    - **context** 는 현재 액티비티를 컨텍스트로 넘겨준다.
+    - **textViewResourceId** 는 항목으로 표시될 텍스트 뷰의 리소스 ID이다
+    - **objects** 는 어댑터로 공급될 데이터 원본으로 단순 배열
 
 리소스 ID                            | 설명
 ----------------------------------- | --------------------------------------
@@ -176,9 +176,9 @@ ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.item, items
 
 * 그리드 뷰 설정 절차
 
-  1. XML 레이아웃에 GridView 정의
-  2. 어댑터 정의
-  3. 어댑터를 생성하고 GridView 객체에 연결
+    1. XML 레이아웃에 GridView 정의
+    2. 어댑터 정의
+    3. 어댑터를 생성하고 GridView 객체에 연결
 
 <img src="images/gridview.png" width=400 style="bottom: 100px; right: 150px; position: absolute">
 
@@ -270,7 +270,7 @@ public class HelloGridViewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Toast.makeText(HelloGridViewActivity.this,
-                        "" + (position+1)+ ＂번째 선택",
+                        "" + (position+1)+ "번째 선택",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -280,16 +280,16 @@ public class HelloGridViewActivity extends AppCompatActivity {
 
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/HelloGridView/app/src/main/java/com/example/kwanwoo/hellogridview/HelloGridViewActivity.java]
 
-<img src="images/gridviewex.png" width=200 style="top: 150px; right: 150px; position: absolute">
+<img src="images/gridviewex.png" width=200 style="top: 150px; right: 150px; position: absolute;">
 
 ---
 ## 커스텀 뷰
 * 어댑터 뷰의 항목 하나는 단순한 문자열 이나 이미지 뿐만 아니라, 임의의 뷰가 될 수 있음.
 <img src="images/customview.png">
 * 커스텀 뷰 설정 절차
-  1. 항목을 위한 XML 레이아웃 정의
-  2. 어댑터 정의
-  3. 어댑터를 생성하고 어댑터 뷰 객체에 연결
+    1. 항목을 위한 XML 레이아웃 정의
+    2. 어댑터 정의
+    3. 어댑터를 생성하고 어댑터 뷰 객체에 연결
 
 ---
 ## 커스텀 뷰: 항목 XML 레이아웃 정의
