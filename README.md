@@ -24,7 +24,7 @@ Lecture Notes | Labs
 [ActionBar and Navigation](https://jyheo.github.io/android-lecture/actionbar-navigation.html) | Lab
 [Data Storage](https://jyheo.github.io/android-lecture/data-storage.html) | Lab
 [Location based service](https://jyheo.github.io/android-lecture/location.html) | Lab
-Animation and Graphics | Lab
+[Animation and Graphics](https://jyheo.github.io/android-lecture/animation-graphics.html) | Lab
 Multimedia | Lab
 Material Design | Lab
 Mobile Backend Service | Lab
