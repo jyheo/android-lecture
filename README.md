@@ -25,6 +25,6 @@ Lecture Notes | Labs
 [Data Storage](https://jyheo.github.io/android-lecture/data-storage.html) | Lab
 [Location based service](https://jyheo.github.io/android-lecture/location.html) | Lab
 [Animation and Graphics](https://jyheo.github.io/android-lecture/animation-graphics.html) | Lab
-Multimedia | Lab
+[Multimedia](https://jyheo.github.io/android-lecture/multimedia.html) | Lab
 Material Design | Lab
 Mobile Backend Service | Lab
