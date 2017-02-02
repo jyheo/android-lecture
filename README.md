@@ -11,7 +11,6 @@ $ cd lecture-notes
 $ make
 ```
 * Open .html with your web browser.
-* Other lecture notes will be added soon!
 
 ## Lecture notes & Labs
 Lecture Notes | Labs
