@@ -2,11 +2,11 @@
 
 ## 1. 다음과 같은 레이아웃을 가지는 MainActivity를 생성하라.
 
-<img src="images/data-stroage-lab1.png" width=400px>
+<img src="images/data-storage-lab1.png" width=400px>
 
 ## 2. 액션바의 옵션 메뉴를 누르면 다음과 같이 3개의 메뉴가 나오고, 이중 하나만 선택되도록 하기 위해 메뉴 리소스의 메뉴 아이템을 <group> 태그로 묶고, **android:checkableBehavior** 의 값을 "single"로 설정하라.
 
-<img src="images/data-stroage-lab2.png" width=300px>
+<img src="images/data-storage-lab2.png" width=300px>
 
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
@@ -53,7 +53,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 * [Tool->Android->Android Device Monitor]를 실행시켜서, FileExplorer 탭을 열어 해당 파일이 생성되었는 지 확인합니다.
 * 메인 화면의 “LOAD” 버튼을 누르면 해당 파일에서 데이터를 읽어서 결과를 보여는 TextView 창에 출력해 줍니다. [다음 그림은 “LOAD” 버튼을 누른 후 저장된 파일의 내용을 출력한 결과임]
 
-<img src="images/data-stroage-lab3.png" width=300px>
+<img src="images/data-storage-lab3.png" width=300px>
 
 * 참조코드: https://github.com/kwanu70/AndroidExamples/blob/master/chap7/FileTest/app/src/main/java/com/example/kwanwoo/filetest/MainActivity.java [44~90줄]
 
@@ -71,4 +71,4 @@ public boolean onCreateOptionsMenu(Menu menu) {
 * 메인 화면의 “LOAD” 버튼을 누르면 해당 데이터베이스에서 데이터를 읽어서 결과를 보여는 TextView 창에 출력해 줍니다.
 * 참조코드: https://github.com/kwanu70/AndroidExamples/blob/master/chap7/SQLiteDBTest/app/src/main/java/com/example/kwanwoo/sqlitedbtest/MainActivity.java
 
-<img src="images/data-stroage-lab4.png" width=300px>
+<img src="images/data-storage-lab4.png" width=300px>
