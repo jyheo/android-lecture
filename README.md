@@ -27,4 +27,4 @@ Lecture Notes | Labs
 [Animation and Graphics](https://jyheo.github.io/android-lecture/animation-graphics.html) | Lab
 [Multimedia](https://jyheo.github.io/android-lecture/multimedia.html) | Lab
 [Material Design](https://jyheo.github.io/android-lecture/material-design.html) | Lab
-Mobile Backend Service | Lab
+[Mobile Backend Service](https://jyheo.github.io/android-lecture/mobile-backend.html) | Lab
