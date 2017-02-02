@@ -21,10 +21,10 @@ Lecture Notes | Labs
 [Adapter View](https://jyheo.github.io/android-lecture/adapter-view.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/adapter-view-lab.md)
 [Activity and Intent](https://jyheo.github.io/android-lecture/activity-intent.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/activity-intent-lab.md)
 [Fragment](https://jyheo.github.io/android-lecture/fragment.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/fragment-lab.md)
-[ActionBar and Navigation](https://jyheo.github.io/android-lecture/actionbar-navigation.html) | Lab
-[Data Storage](https://jyheo.github.io/android-lecture/data-storage.html) | Lab
-[Location based service](https://jyheo.github.io/android-lecture/location.html) | Lab
-[Animation and Graphics](https://jyheo.github.io/android-lecture/animation-graphics.html) | Lab
-[Multimedia](https://jyheo.github.io/android-lecture/multimedia.html) | Lab
-[Material Design](https://jyheo.github.io/android-lecture/material-design.html) | Lab
-[Mobile Backend Service](https://jyheo.github.io/android-lecture/mobile-backend.html) | Lab
+[ActionBar and Navigation](https://jyheo.github.io/android-lecture/actionbar-navigation.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/actionbar-navigation-lab.md)
+[Data Storage](https://jyheo.github.io/android-lecture/data-storage.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/data-storage-lab.md)
+[Location based service](https://jyheo.github.io/android-lecture/location.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/location-lab.md)
+[Animation and Graphics](https://jyheo.github.io/android-lecture/animation-graphics.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/animation-graphics-lab.md)
+[Multimedia](https://jyheo.github.io/android-lecture/multimedia.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/multimedia-lab.md)
+[Material Design](https://jyheo.github.io/android-lecture/material-design.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/material-design-lab.md)
+[Mobile Backend Service](https://jyheo.github.io/android-lecture/mobile-backend.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/mobile-backend-lab.md)
