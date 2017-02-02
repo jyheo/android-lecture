@@ -13,6 +13,9 @@ $ make
 * Open .html with your web browser.
 
 ## Lecture notes & Labs
+
+[pdf : android-lecture-pdf-0.9-prerelease.tgz](https://github.com/jyheo/android-lecture/releases/download/0.9-prerelease/android-lecture-pdf-0.9-prerelease.tgz)
+
 Lecture Notes | Labs
 ---------------|-------------------
 [Android Intro](https://jyheo.github.io/android-lecture/android-intro.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/android-intro-lab.md)
