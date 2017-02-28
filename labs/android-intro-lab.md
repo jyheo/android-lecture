@@ -28,7 +28,7 @@ https://developer.android.com/studio/index.html 사이트 접속하여 Android S
   - Extras
     - Android Support Repository (installed)
     - Google Repository (updeate)
-    - Google USD Driver
+    - Google USB Driver (윈도우즈에서는 제조사 USB 드라이버 설치는 추가로 해야함)
 
 ## 4. AVD Manager를 이용하여 virtual device (안드로이드 에뮬레이터) 만들기
 ![](images/android-intro-lab-avd.png)
