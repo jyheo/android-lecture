@@ -15,7 +15,7 @@ all: html pdf
 pdf: $(PDF-TARGETS) decktape
 	tar zcvf $(RELEASE) *.pdf
 
-%.pdf : %.html
+%.pdf : %.html decktape
 	decktape-1.0.0/phantomjs decktape-1.0.0/decktape.js $< $@
 
 decktape: decktape-1.0.0/decktape.js
