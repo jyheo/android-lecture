@@ -22,6 +22,8 @@ class: center, middle
 
 UI요소: Button, EditText, TextView, LinearLayout, ...
 
+<img src="images/androidui.png" style="top:150px; right:100px; position:absolute">
+
 ---
 ## UI 요소 크기
 * 모든 UI요소들은 가로,세로 크기를 지정할 수 있음
@@ -51,13 +53,10 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 *   android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:text="Width = 100dp"/>
-
 ```
 ]
 
-.right[
-<img src="images/ui_size.png" width=220>
-]
+<img src="images/ui_size.png" width=250 style="top:150px; right:100px; position:absolute">
 
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/ui_component_size.xml]
 
@@ -66,8 +65,6 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 
 레이아웃은 사용자 인터페이스에 대한 시각적 구조를 정의합니다. 예컨대 액티비티 또는 앱 위젯에 대한 UI가 이에 해당됩니다.
 .right[출처: https://developer.android.com/guide/topics/ui/declaring-layout.html]
-
-&nbsp;
 
 * 레이아웃 내에 자식 뷰(UI요소 들)의 배치 방법을 결정함
   * 안드로이드에서 모든 UI요소들은 뷰(View)를 상속 받음
@@ -134,6 +131,10 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/activity_main.xml]
 
+???
+
+* layout_weight=1이란 값을 눈여겨 볼것
+
 ---
 ## LinearLayout - Example(2/2)
 .left-column-70[
@@ -169,6 +170,9 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 <img src="images/arrowright.png" width=50 style="top:400px; right:350px; position:absolute;">
 
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/activity_main.xml]
+
+???
+* 앞의 layout_weight=1과 동일한 값이 있음, 이는 앞의 LinearLayout과 이 LinearLayout의 크기 비율이 1:1이란 것을 의미함, 따라서 화면에서 절반씩 자리를 차지하고 있게 됨
 
 ---
 class: center, middle
@@ -372,6 +376,10 @@ class: center, middle
 * View.onTouchListener – 뷰를 터치했을 때, 땠을 때 등에 대한 콜백
 * View.onCreateContextMenu – 롱 클릭으로 컨텍스트 메뉴가 생성될 때 호출되는 콜백 인터페이스
 
+???
+
+Click와 Touch의 차이? Click은 누른 상태에서 해당 View를 벗어나지 않고 릴리즈하면 발생하며 Touch는 누르는 순간 발생
+
 ---
 ## Event Listener Example
 .left-column-70[
@@ -401,3 +409,8 @@ public class MainActivity extends AppCompatActivity {
 <img src="images/eventlistenerex.png" width=220>
 ]
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/java/com/example/jyheo/basicui/MainActivity.java]
+
+???
+
+* MainActivity의 onCreate()는 일단은 main()함수 같이 프로그램의 시작 지점이라고 생각해두자.
+* findViewById()는 해당 ID의 UI요소를 찾아서 해당 객체를 리턴하는 Activity의 메소드임
