@@ -9,8 +9,8 @@ class: center, middle
 ## Contents
 * 어댑터 뷰 개요
 * 리스트 뷰 (ListView)
-* 그리드 뷰 (GridView)
-* 커스텀 뷰 (Custom View)
+* 커스텀 어댑터 (Custom Adapter)
+* 항목 클릭 이벤트 처리
 
 ---
 ## 어댑터 뷰
@@ -44,6 +44,12 @@ class: center, middle
 .right-column-50[
 <img src="images/adapterclass.png" width=90%>
 ]
+
+???
+
+* CursorAdapter는 DB쿼리 결과로 받아오는 Cursor를 어댑터에게 전달함
+* SimpleAdapter는 키에 해당하는 값을 보여줄 뷰의 ID를 대응시키는 정보를 전달하면 어댑터가 알아서 처리함
+
 
 ---
 ## 리스트 뷰 (ListView)
@@ -148,8 +154,8 @@ ArrayAdapter<CharSequence> adapt = ArrayAdapter.createFromResource(this,
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/ListViewTest/app/src/main/res/values/arrays.xml]
 
 ---
-## 사용자 정의 ListView 템플릿 레이아웃
-* ListView 항목의 템플릿 역할을 담당할  
+## 항목을 위한 사용자 정의 TextView
+* ListView 항목의 TextView를 위한 템플릿  
   /res/layout/item.xml 생성  
 ```xml
 <TextView
@@ -161,7 +167,7 @@ ArrayAdapter<CharSequence> adapt = ArrayAdapter.createFromResource(this,
     android:padding="10dp" />
 ```
 
-* 정의된 ListView 템플릿 레이아웃을 이용하여ArrayAdapter 준비
+* 템플릿 레이아웃(item.xml)을 이용하여 ArrayAdapter 준비
 ```java
 ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.item, items);
 ```
@@ -171,128 +177,16 @@ ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.item, items
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/ListViewTest/app/src/main/res/layout/item.xml]
 
 ---
-## 그리드 뷰 (GridView)
-* 2차원 스크롤가능한 그리드에 항목을 표시
-
-* 그리드 뷰 설정 절차
-
-    1. XML 레이아웃에 GridView 정의
-    2. 어댑터 정의
-    3. 어댑터를 생성하고 GridView 객체에 연결
-
-<img src="images/gridview.png" width=400 style="bottom: 100px; right: 150px; position: absolute">
-
----
-## 그리드 뷰:XML 레이아웃에 GridView 정의
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gridview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-*   android:columnWidth="60dp"                  항목 하나의 폭 설정
-*   android:numColumns="auto_fit"               열의 폭과 화면 폭을 바탕으로 자동 계산
-*   android:verticalSpacing="10dp"              항목 간의 간격 설정
-    android:horizontalSpacing="10dp"
-*   android:stretchMode="columnWidth"           열 내부의 여백을 폭에 맞게 채움
-    android:gravity="center"
-    />
-```
-
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/HelloGridView/app/src/main/res/layout/activity_hello_grid_view.xml]
-
----
-## 그리드 뷰: 어댑터 정의
-
-```java
-public class ImageAdapter extends BaseAdapter {
-    private Context mContext;
-    private Integer[] mThumbIds = {
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5, …}
-
-    public ImageAdapter(Context c) {
-        mContext = c;
-    }
-
-    public int getCount() {
-        return mThumbIds.length;
-    }
-    public Object getItem(int position) {
-        return mThumbIds[position];
-    }
-    public long getItemId(int position) {
-        return position;
-    }
-```
-
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/HelloGridView/app/src/main/java/com/example/kwanwoo/hellogridview/ImageAdapter.java]
-
----
-## 그리드 뷰: 어댑터 정의 (계속)
-
-```java
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-*           imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(100, 100));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
-        } else {
-            imageView = (ImageView) convertView;
-        }
-
-*       imageView.setImageResource(mThumbIds[position]);
-        return imageView;
-    }
-}
-```
-
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/HelloGridView/app/src/main/java/com/example/kwanwoo/hellogridview/ImageAdapter.java]
-
----
-## 그리드 뷰: 어댑터 생성 및 연결
-
-```java
-public class HelloGridViewActivity extends AppCompatActivity {
-
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hello_grid_view);
-
-*       GridView gridview = (GridView) findViewById(R.id.gridview);
-*       gridview.setAdapter(new ImageAdapter(this));
-
-        gridview.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Toast.makeText(HelloGridViewActivity.this,
-                        "" + (position+1)+ "번째 선택",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-}
-```
-
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/HelloGridView/app/src/main/java/com/example/kwanwoo/hellogridview/HelloGridViewActivity.java]
-
-<img src="images/gridviewex.png" width=200 style="top: 150px; right: 150px; position: absolute;">
-
----
-## 커스텀 뷰
+## 커스텀 어댑터
 * 어댑터 뷰의 항목 하나는 단순한 문자열 이나 이미지 뿐만 아니라, 임의의 뷰가 될 수 있음.
 <img src="images/customview.png">
-* 커스텀 뷰 설정 절차
+* 커스텀 어댑터 설정 절차
     1. 항목을 위한 XML 레이아웃 정의
-    2. 어댑터 정의
+    2. 커스텀 어댑터 정의
     3. 어댑터를 생성하고 어댑터 뷰 객체에 연결
 
 ---
-## 커스텀 뷰: 항목 XML 레이아웃 정의
+## 커스텀 어댑터: 항목 XML 레이아웃 정의
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -318,7 +212,7 @@ public class HelloGridViewActivity extends AppCompatActivity {
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/CustomAdapterTest/app/src/main/res/layout/item.xml]
 
 ---
-## 커스텀 뷰: 항목 XML 레이아웃 정의 (계속)
+## 커스텀 어댑터: 항목 XML 레이아웃 정의 (계속)
 
 ```xml
 *   <LinearLayout
@@ -347,7 +241,7 @@ public class HelloGridViewActivity extends AppCompatActivity {
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap3/CustomAdapterTest/app/src/main/res/layout/item.xml]
 
 ---
-## 커스텀 뷰: 어댑터 정의
+## 커스텀 어댑터: 어댑터 정의
 
 ```java
 class MyItem {
@@ -377,7 +271,7 @@ class MyAdapter extends BaseAdapter {
 ]
 
 ---
-## 커스텀 뷰: 어댑터 정의 (계속)
+## 커스텀 어댑터: 어댑터 정의 (계속)
 
 ```java
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -406,7 +300,7 @@ class MyAdapter extends BaseAdapter {
 ]
 
 ---
-## 커스텀 뷰: 어댑터 생성 및 연결
+## 커스텀 어댑터: 어댑터 생성 및 연결
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -435,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
 
 ---
 ##  항목 클릭 이벤트 처리
-* AdapterView의 항목이 클릭될 때, 호출되는 callback method의 인터페이스
+* 어댑터 뷰의 항목이 클릭될 때, 호출되는 callback method의 인터페이스
 ```java
 public static interface AdapterView.OnItemClickListener {
 	abstract void onItemClick(AdapterView<?> parent,
