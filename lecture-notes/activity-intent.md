@@ -14,7 +14,8 @@ class: center, middle
 .footnote[출처: https://developer.android.com/guide/components/activities.html]
 
 ???
-원문에는 '인터페이스를 끌어올'에서 끌어오다가 draw임
+안드로이드 애플리케이션은 4가지 구성 요소들을 적절히 사용하여 만들어짐
+- 액티비티, 서비스, 브로드캐스트 리시버, 컨텐트 프로바이더
 
 ---
 ## 액티비티(Activity) 사용(1/2)
@@ -40,6 +41,11 @@ public class FirstActivity extends AppCompatActivity {
     </application>
 </manifest>
 ```
+
+???
+원래는 FirstActivity가 Activity 클래스를 상속해서 만들어지지만, 이전 버전과 호환이 되면서 새로운 기능을 제공하는 appcompat 라이브러리의 AppCompatActivity를 사용하는 것이 좋을 수 있다. 물론 appcompat 라이브러리에서 지원이 안되는 새로운 기능을 위해서는 Activity를 사용해야 한다.
+
+참고: 안드로이드 지원(support) 라이브러리 https://developer.android.com/topic/libraries/support-library/index.html?hl=ko
 
 ---
 ## 액티비티(Activity) 사용 (2/2)
@@ -78,6 +84,11 @@ public class FirstActivity extends AppCompatActivity {
 
 .footnote[출처: https://developer.android.com/guide/components/intents-filters.html]
 
+???
+서비스는 화면이 없는 실행 요소입니다. 보통 백그라운드로 실행될 것들을 서비스로 만들고 포그라운드로 UI를 갖는 것은 액티비티로 만듭니다.
+
+브로드캐스트는 시스템에서 방송하는 기능으로 브로드캐스트 리시버가 이를 받을 수 있습니다. 예를 들어 문자가 왔다는 것을 브로드캐스트 하거나 배터리 잔량을 브로드캐스트 합니다.
+
 ---
 ## 인텐트로 액티비티 시작하기
 
@@ -89,7 +100,7 @@ Intent intent = new Intent(getApplicationContext(),
 startActivity(intent);
 ```
 
-**명시적 인텐트**
+**명시적 인텐트** : 인텐트를 받을 대상이 명확히 정해져 있음
 
 ---
 ## 인텐트 유형
