@@ -24,8 +24,8 @@ class: center, middle
 ## 프래그먼트 디자인
 * Android 3.0(API 레벨 11)부터 생겼음
 * 기본적으로 태블릿과 같은 큰 화면에서 보다 역동적이고 유연한 UI 디자인을 지원하는 것이 목적
-* 프래그먼트는 재사용 가능하며 액티비티를 구성하는 요소로 만들어야 함
-  - **재사용을 염두에 두고 디자인하며 한 프래그먼트를 또 다른 프래그먼트로부터 직접 조작하는 것은 삼가**
+* 프래그먼트는 재사용 가능하며, 다른 UI요소처럼 액티비티의 구성 요소가 됨
+  - **재사용을 염두에 두고 디자인하며, 한 프래그먼트를 또 다른 프래그먼트로부터 직접 조작하는 것은 삼가**
 
 <img src="images/fragment2.png" width=450 style="display:block; margin: auto;">
 
@@ -51,7 +51,7 @@ class: center, middle
 ```java
 package com.jyheo.fragmentbasic;
 
-*import android.app.Fragment;  // support library를 사용하지 않도록 확인!
+*import android.app.Fragment;
 
 public class FirstFragment extends Fragment {
     public FirstFragment() {
@@ -127,7 +127,7 @@ public class FirstFragment extends Fragment {
 * 프레그먼트 동적 교체
 
 ```java
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +163,7 @@ https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/
 * 액티비티
 
 ```java
-public class FragSwitchActivity extends Activity {
+public class FragSwitchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
