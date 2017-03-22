@@ -3,17 +3,155 @@ layout: true
 
 ---
 class: center, middle
-# 파일과 설정, 컨텐트 프로바이더
+# 콘텐츠 제공자와 파일, 설정
 
 ---
 ## Contents
-* Files
-* SharedPreferences
-* ContentProvider
+* 콘텐츠 제공자(ContentProvider)
+* 안드로이드 앱에 권한 부여/확인 하기
+* 파일(Files)
+* 설정(SharedPreferences)
 
 ---
 class: center, middle
-# Files
+# 콘텐츠 제공자(ContentProvider)
+
+---
+## 콘텐츠 제공자(ContentProvider)
+
+* 콘텐츠 제공자는 구조화된 데이터 세트의 액세스를 관리
+* 콘텐츠 제공자 내의 데이터에 액세스하고자 하는 경우, 애플리케이션의 Context에 있는 ContentResolver 객체를 사용
+    - ContentResolver는 데이터의 CRUD(Create,Read, Update, Delete) 제공
+* Android 자체에 오디오, 동영상, 이미지 및 개인 연락처 정보 등의 데이터를 관리하는 콘텐츠 제공자가 포함되어 있음
+    - 참고: android.provider 패키지
+
+.footnote[https://developer.android.com/guide/topics/providers/content-providers.html?hl=ko]
+
+---
+## 콘텐츠 제공자 query
+
+* CallLog.Calls 콘텐츠 제공자에게 query()하기
+    - getContentResolver(): ContentResolver 객체 가져오기
+    - CallLog.Calls.CONTENT_URI: Call Log 콘텐츠 제공자의 URI
+
+```java
+  // 전화 기록(CallLog.Calls)를 질의하여 결과를 리턴
+* cursor = getContentResolver().query(
+      CallLog.Calls.CONTENT_URI,          // 콘텐츠 제공자의 URI
+      new String[]{CallLog.Calls.NUMBER}, // 각 행에 포함될 열들
+      null                                // 선택될 행들에 대한 조건
+      null,                               // 조건에 필요한 인수
+      null);                              // 선택된 행들의 정렬 방법
+  int number_index = cursor.getColumnIndex(CallLog.Calls.NUMBER);
+  ArrayList<String> call_list = new ArrayList<>();
+  while (cursor.moveToNext()) {
+      String num = cursor.getString(number_index);
+      call_list.add(num);
+  }
+  cursor.close();
+```
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/ContentResolverEx/app/src/main/java/com/example/jyheo/contentresolverex/MainActivity.java]
+
+---
+## 콘텐츠 제공자 접근 권한
+
+* 보통 특정 콘텐츠 제공자에 접근하기 위해 권한을 필요로 함
+* CallLog.Calls의 데이터를 읽기 위해서는 READ_CALL_LOG 권한 필요
+    - 데이터를 변경하기 위해서는 WRITE_CALL_LOG 권한 필요
+
+---
+## 안드로이드 앱에 권한 부여/확인 하기 (1/4)
+
+* 안드로이드 앱이 기기의 특정 데이터나 장치에 접근하기 위해 **권한** 을 필요로 함
+* 권한 부여/확인하는 방법
+    1. Manifest 파일에 **권한** 표시
+    2. 데이터나 장치에 접근하기 전에 **권한** 을 확인
+        - 해당 권한이 있으면 해당 데이터에 접근
+        - 해당 권한이 없으면 사용자에게 요청 다이얼로그를 표시함
+    3. 요청 다이얼로그 결과(Allow 또는 Deny)에 따라
+        - Accept이면 해당 데이터에 접근
+        - Deny이면 해당 데이터에 접근하지 못하기 때문에 앱을 종료하거나 해당 데이터 접근 없이 진행
+
+???
+* Android 6.0 (API level 23) 이상부터는
+    - 앱 실행 중에 필요한 권한(permission)을 반드시 확인하고 없으면 요청해야 함
+    - 앱 사용자는 권한의 승인/거부를 결정
+    - 앱의 환경설정에서 권한 설정을 언제든지 변경할 수 있음
+
+---
+## 안드로이드 앱에 권한 부여/확인 하기 (2/4)
+* 1) Manifest 파일에 권한 표시
+    - 예를 들어 READ_CALL_LOG 라는 권한을 필요로 함
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.jyheo.contentresolverex">
+*   <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <application ...>
+      ...
+    </application>
+</manifest>
+```
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/ContentResolverEx/app/src/main/AndroidManifest.xml]
+
+---
+## 안드로이드 앱에 권한 부여/확인 하기 (3/4)
+
+* 2) 데이터나 장치에 접근하기 전에 **권한** 을 확인
+
+```java
+  final int REQUEST_CODE_PERM_READ_CALL_LOG = 1;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+
+*     if (ContextCompat.checkSelfPermission(this,
+              Manifest.permission.READ_CALL_LOG) ==
+          PackageManager.PERMISSION_GRANTED) {
+          // 권한 있음! 해당 데이터나 장치에 접근!
+          updateCallLog();
+      } else {
+          // 권한이 없으므로, 사용자에게 권한 요청 다이얼로그 표시!
+*         ActivityCompat.requestPermissions(this,
+*                 new String[]{Manifest.permission.READ_CALL_LOG}, REQUEST_CODE_PERM_READ_CALL_LOG);
+      }
+
+  }
+```
+
+<img src="images/permission_call.png" style="width:200px; top:100px; right:100px; position:absolute;">
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/ContentResolverEx/app/src/main/java/com/example/jyheo/contentresolverex/MainActivity.java]
+
+---
+## 안드로이드 앱에 권한 부여/확인 하기 (4/4)
+
+* 3) 요청 다이얼로그 결과(Allow 또는 Deny)에 따라
+
+```java
+  @Override
+* public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+      super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+*     if (requestCode == REQUEST_CODE_PERM_READ_CALL_LOG) {
+*         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+              // Allowed! 데이터나 장치에 접근!
+              updateCallLog();
+          } else {
+              // permission for READ_CALL_LOG denied!
+          }
+      }
+  }
+```
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/ContentResolverEx/app/src/main/java/com/example/jyheo/contentresolverex/MainActivity.java]
+
+---
+class: center, middle
+# 파일
 
 ---
 ## 안드로이드 파일 시스템
@@ -141,16 +279,6 @@ package com.example.kwanwoo.filetest;
 </manifest>
 ```
 
-* Android 6.0 (API level 23) 이상부터는
-    - 앱 실행 중에 사용하려는 권한(permission)을 반드시 요청
-    - 앱 사용자는 권한의 승인/거부를 결정
-    - 앱의 환경설정에서 권한 설정을 언제든지 변경할 수 있음
-
-<img src="images/permission.png" width=150 style="bottom:50px; right: 150px; position:absolute;">
-
-???
-오른쪽 그림은 Storage권한을 변경하는 예를 보여주는 것임.
-
 ---
 ## 앱 실행 시 접근 권한 검사 및 요청
 
@@ -246,33 +374,31 @@ void requestPermission() {
 
 ---
 class: center, middle
-# SharedPreferences
+# 설정(SharedPreferences)
 
 ---
-## 프레퍼런스
-* **프로그램의 설정 정보 (사용자의 옵션 선택 사항 이나 프로그램의 구성 정보)를** 영구적으로 **저장**하는 용도로 사용
+## 설정(Preference)
+* **프로그램의 설정 정보** (사용자의 옵션 선택 사항 이나 프로그램의 구성 정보)를 영구적으로 저장하는 용도로 사용
 * XML 포맷의 텍스트 파일에 정보를 저장.
-
 * **SharedPreferences** 클래스
     - 프레프런스의 데이터를 관리하는 클래스
-    - **응용 프로그램 내의 액티비티 간에 공유**하며, 한쪽 액티비티에서 수정 시 다른 액티비티에서도 수정된 값을 읽을 수 있다.
-    - 응용 프로그램의 고유한 정보이므로 **외부에서는 읽을 수 없다.**
+    - 응용 프로그램 내의 액티비티 간에 공유하며, 한쪽 액티비티에서 수정 시 다른 액티비티에서도 수정된 값을 읽을 수 있다.
+    - 응용 프로그램의 고유한 정보이므로 외부에서는 읽을 수 없다.
 
 ---
 ## SharedPreferences 객체 얻기
-* **SharedPreferences** 객체를 얻는 2 가지 방법
-    - **public SharedPreferences getSharedPreferences (String name, int mode)**
+* SharedPreferences 객체를 얻는 2 가지 방법
+    - public SharedPreferences **getSharedPreferences** (String name, int mode)
         + 첫 번째 인수 : 프레프런스를 저장할 XML 파일의 이름이다.
         + 두 번째 인수 : 파일의 공유 모드
             - MODE_PRIVATE: 읽기 쓰기가 가능
-
-    - **public SharedPreferences getPreferences(int mode)**
+    - public SharedPreferences **getPreferences** (int mode)
         + 생성한 액티비티 전용이므로 같은 패키지의 다른 액티비티는 읽을 수 없다.
         + 액티비티와 동일한 이름의 XML 파일 생성
 
 ---
 ## 프레퍼런스의 데이터 읽기
-* 프레퍼런스에 저장된 여러 타입의 정보를 **SharedPreferences 객체의 다음 메서드**를 이용하여 읽을 수 있다
+* 프레퍼런스에 저장된 여러 타입의 정보를 SharedPreferences 객체의 다음 메서드를 이용하여 읽을 수 있다
     - int getInt (String key, int defValue)
     - String getString (String key, String defValue)
     - boolean getBoolean (String key, boolean defValue)    
@@ -283,7 +409,6 @@ class: center, middle
 ## 프레퍼런스에 데이터 저장하기
 * 프레프런스는 키와 값의 쌍으로 데이터를 저장
     - 키는 정보의 이름이며 값은 정보의 실제값
-
 * **SharedPreferences.Editor** 이용하여 프레프런스에 값을 저장
     - 데이터 저장 시 프레퍼런스의 **edit() 메서드를 호출하여 Editor 객체를 먼저 얻음.**
     - Editor 객체에는 값을 저장하고 관리하는 메서드가 제공됨
@@ -343,8 +468,3 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap7/SharedPreferenceTest/app/src/main/java/com/example/kwanwoo/sharedpreferencetest/MainActivity.java]
-
----
-## ContentProvider
-
-* TBA
