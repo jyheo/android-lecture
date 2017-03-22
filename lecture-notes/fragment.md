@@ -25,8 +25,7 @@ class: center, middle
 * Android 3.0(API 레벨 11)부터 생겼음
 * 기본적으로 태블릿과 같은 큰 화면에서 보다 역동적이고 유연한 UI 디자인을 지원하는 것이 목적
 * 프래그먼트는 재사용 가능하며, 다른 UI요소처럼 액티비티의 구성 요소가 됨
-  - **재사용을 염두에 두고 디자인하며, 한 프래그먼트를 또 다른 프래그먼트로부터 직접 조작하는 것은 삼가**
-
+  - **재사용을 염두에 두고 디자인하며, 한 프래그먼트를 또 다른 프래그먼트로부터 직접 조작하는 것은 삼가**  
 <img src="images/fragment2.png" width=450 style="display:block; margin: auto;">
 
 ???
@@ -67,9 +66,10 @@ public class FirstFragment extends Fragment {
 }
 ```
 
-**Tip!** 안드로이드 스튜디오에서 File > New > Fragment > Fragment(Blank) 를 이용하여 쉽게 생성할 수 있음
-
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/java/com/jyheo/fragmentbasic/FirstFragment.java]
+
+???
+**Tip!** 안드로이드 스튜디오에서 File > New > Fragment > Fragment(Blank) 를 이용하여 쉽게 생성할 수 있음(다만, 이때에는 support v4 Fragment로 생성됨)
 
 ---
 ## 프래그먼트 레이아웃
@@ -245,60 +245,39 @@ final SecondFragment secondFragment = new SecondFragment();
 ```
 
 ---
-## 화면 방향과 프래그먼트 활용
-* TitlesFragment 와 DetailsFragment
-
-.left-column-50[
-<img src="images/fragmentex_main.png" width=80%>
-]
-
-.right-column-50[
-<img src="images/fragmentex_maindetail.png" width=80%>
-]
+## 화면 방향/크기와 프래그먼트 활용
+* TitlesFragment 와 DetailsFragment  
+<img src="images/fragmentex_main.png" width=30%>
+<img src="images/fragmentex_maindetail.png" width=30%>
+<img src="images/fragmentex_large.png" width=30%>
 
 ???
 왼쪽(가로보기, landscape)은 좌측에 TitlesFragment가 우측에 DetailsFragment가 표시되는 형태이고,
-오른쪽(세로보기, portrait)은 TitlesFragment만 보이다가 항목을 선택하면 DetailsFragment만 표시된다.
+가운데(세로보기, portrait)는 TitlesFragment만 보이다가 항목을 선택하면 DetailsFragment만 표시된다.
+오른쪽(크기=large)은 태블릿용 레이아웃으로 TitlesFragment와 DetailsFragment가 모두 표시되는 형태로 landscape와 유사하다.
 
 ---
-## 화면 방향과 프래그먼트 활용
+## 화면 방향/크기와 프래그먼트 활용
 * 액티비티에 가로보기(Landscape) 레이아웃을 추가
   - res/layout 에서 마우스 오른쪽 클릭, 팝업 메뉴 보기
     - New > Layout resource file
     - Qualifiers에서 Orientation - Landscape 선택
-    - 파일 이름은 activity_main.xml
+    - 파일 이름은 원래 있던 것과 동일하게 activity_main.xml
 
 **주의!** 화면 방향을 바꾸면 액티비티가 새로 만들어짐. 당연히 프래그먼트도 다시 만들어짐
 
 .footnote[예제 프로젝트 파일: https://github.com/jyheo/AndroidTutorial/tree/master/FragmentExample]
 
 ---
-## 화면 방향과 프래그먼트 활용
-* Landscape 용 레이아웃 layout-land/activity_main.xml
 
-```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+## 화면 방향/크기와 프래그먼트 활용
+* 액티비티에 태블릿용(large) 레이아웃을 추가
+  - res/layout 에서 마우스 오른쪽 클릭, 팝업 메뉴 보기
+    - New > Layout resource file
+    - Qualifiers에서 Size - large 선택
+    - 파일 이름은 원래 있던 것과 동일하게 activity_main.xml
 
-*   <fragment
-*       android:name="com.jyheo.fragmentexample.TitlesFragment"
-        android:id="@+id/titles"
-        android:layout_weight="1"
-        android:layout_width="0px"
-        android:layout_height="match_parent" />
-
-*   <FrameLayout                     [DetailsFragment를 동적으로 추가할 위치]
-*       android:id="@+id/details"
-        android:layout_weight="1"
-        android:layout_width="0px"
-        android:layout_height="match_parent" />
-
-</LinearLayout>
-```
-
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/res/layout-land/activity_main.xml]
+**참고** 화면의 크기에 따라(일반적으로 폰은 normal, 태블릿은 large이상임) 해당되는 레이아웃 파일을 알아서 사용하게 됨
 
 ---
 ## 화면 방향과 프래그먼트 활용
@@ -322,6 +301,36 @@ final SecondFragment secondFragment = new SecondFragment();
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/res/layout/activity_main.xml]
 
 ---
+## 화면 방향과 프래그먼트 활용
+* Landscape 용 레이아웃 layout-land/activity_main.xml
+* Large 용 레이아웃 layout-large/activity_main.xml
+
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+*   <fragment
+*       android:name="com.jyheo.fragmentexample.TitlesFragment"
+        android:id="@+id/titles"
+        android:layout_weight="1"
+        android:layout_width="0px"
+        android:layout_height="match_parent" />
+
+*   <FrameLayout                     [DetailsFragment를 동적으로 추가할 위치]
+*       android:id="@+id/details"
+        android:layout_weight="2"
+        android:layout_width="0px"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+```
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/res/layout-land/activity_main.xml]
+
+
+---
 * TitlesFragment.java
 
 ```java
@@ -330,7 +339,6 @@ public class TitlesFragment extends Fragment {
 *   public interface OnTitleSelectedListener { // 액티비티로 메시지를 전달하기 위한 인터페이스
         public void onTitleSelected(int i, boolean restoreSaved);
     }
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ListView lv = (ListView)getView().findViewById(R.id.listview);
@@ -348,7 +356,6 @@ public class TitlesFragment extends Fragment {
 *               ((OnTitleSelectedListener)getActivity()).onTitleSelected(mCurCheckPosition, true);
 *       }
     }
-    @Override
 *   public void onSaveInstanceState(Bundle outState) { // 프래그먼트가 사라질 때 선택 항목의 위치를 저장
 *       super.onSaveInstanceState(outState);
 *       outState.putInt("curChoice", mCurCheckPosition);
@@ -361,21 +368,25 @@ public class TitlesFragment extends Fragment {
 * MainActivity.java
 
 ```java
-*public class MainActivity extends Activity implements TitlesFragment.OnTitleSelectedListener {
+*public class MainActivity extends AppCompatActivity implements TitlesFragment.OnTitleSelectedListener {
+    boolean mbDetailsVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (findViewById(R.id.details) != null)
+            mbDetailsVisible = true;
+        else
+            mbDetailsVisible = false;
     }
 
 *   public void onTitleSelected(int i, boolean restoreSaved) {
-        if (getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE) {  // 가로보기용 레이아웃 사용중인 경우
+        if (mbDetailsVisible) {  // 가로보기 또는 태블릿용 레이아웃 사용중인 경우
             // DetailsFragment를 선택한 항목에 맞는 것으로 바꿈
 *           DetailsFragment detailsFragment = DetailsFragment.newInstance(i);
 *           getFragmentManager().beginTransaction().replace(R.id.details, detailsFragment).commit();
-        } else { // 세로보기용 레이아웃
+        } else { // 폰 세로보기용 레이아웃
             if (restoreSaved == false) {
 *               Intent intent = new Intent(this, DetailsActivity.class);
 *               intent.putExtra("index", i);
