@@ -343,3 +343,8 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap7/SharedPreferenceTest/app/src/main/java/com/example/kwanwoo/sharedpreferencetest/MainActivity.java]
+
+---
+## ContentProvider
+
+* TBA
