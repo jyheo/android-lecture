@@ -54,11 +54,20 @@ class: center, middle
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/ContentResolverEx/app/src/main/java/com/example/jyheo/contentresolverex/MainActivity.java]
 
 ---
+## 콘텐츠 제공자 insert/update/Delete
+
+* SQL과 유사하게 query뿐 아니라 insert, update, delete를 지원
+* ContentResolver의 아래 메소드를 사용
+    - Uri insert (Uri url, ContentValues values);
+    - int update(Uri uri, ContentValues values, String where, String[] selectionArgs);
+    - int delete(Uri url, String where, String[] selectionArgs);
+
+---
 ## 콘텐츠 제공자 접근 권한
 
 * 보통 특정 콘텐츠 제공자에 접근하기 위해 권한을 필요로 함
-* CallLog.Calls의 데이터를 읽기 위해서는 READ_CALL_LOG 권한 필요
-    - 데이터를 변경하기 위해서는 WRITE_CALL_LOG 권한 필요
+* CallLog.Calls의 데이터를 읽기(query) 위해서는 READ_CALL_LOG 권한 필요
+    - 데이터를 변경(insert, update, delete)하기 위해서는 WRITE_CALL_LOG 권한 필요
 
 ---
 ## 안드로이드 앱에 권한 부여/확인 하기 (1/4)
