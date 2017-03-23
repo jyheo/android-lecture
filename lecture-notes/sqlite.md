@@ -222,3 +222,65 @@ moveToLast     | 마지막 레코드 위치로 이동하며, 결과셋이 비어
 moveToNext     | 다음 레코드 위치로 이동하며, 마지막 레코드이면 false를 리턴한다.
 moveToPrevious | 이전 레코드로 이동하며, 첫 레코드이면 false를 리턴한다.
 moveToPosition | 임의의 위치로 이동한다.
+
+---
+## SimpleCursorAdapter (1/3)
+
+* SimpleCursorAdapter를 이용하여 간편하게 리스트 뷰(어댑터 뷰)에 SELECT 결과를 출력
+* SimpleCursorAdapter (Context context,   
+    -  int layout,     // 어댑터 뷰 항목 표현을 위한 레이아웃  
+    -  Cursor c,       // 검색 결과를 가리키는 커서  
+    -  String[] from,  // 표시할 테이블 속성  
+    -  int[] to,       // 테이블 속성을 출력할 뷰 ID  
+    -  int flags)      // 보통은 0  
+
+---
+## SimpleCursorAdapter (2/3)
+
+```java
+  button3.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+          String sql = "Select * FROM schedule";
+          Cursor cursor = helper.getReadableDatabase().rawQuery(sql,null);
+          SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
+                  R.layout.item, cursor, new String[]{"title", "datetime"},
+                  new int[]{R.id.tvTitle, R.id.tvDate}, 0);
+          ListView lv = (ListView)findViewById(R.id.listview);
+          lv.setAdapter(adapter);
+      }
+    });
+```
+
+.footnote[https://github.com/jyheo/AndroidExamples/blob/master/chap7/SQLiteDBTest/app/src/main/java/com/example/kwanwoo/sqlitedbtest/MainActivity.java#L89]
+
+---
+## SimpleCursorAdapter (3/3)
+
+* item.xml for SimpleCursorAdapter
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_weight="1"/>
+</LinearLayout>
+```
+
+.footnote[https://github.com/jyheo/AndroidExamples/blob/master/chap7/SQLiteDBTest/app/src/main/res/layout/item.xml]
