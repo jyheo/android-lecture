@@ -79,7 +79,7 @@ class: center, middle
         - 해당 권한이 있으면 해당 데이터에 접근
         - 해당 권한이 없으면 사용자에게 요청 다이얼로그를 표시함
     3. 요청 다이얼로그 결과(Allow 또는 Deny)에 따라
-        - Accept이면 해당 데이터에 접근
+        - Allow면 해당 데이터에 접근
         - Deny이면 해당 데이터에 접근하지 못하기 때문에 앱을 종료하거나 해당 데이터 접근 없이 진행
 
 ???
@@ -194,7 +194,7 @@ FileInputStream openFileInput (String name)
 ```
     - name
         + 파일의 이름으로 경로를 표시하는 '/' 문자가 들어가면 에러
-        + 파일의 위치는 /data/data/패키지명/files 디렉토리로 지정
+        + AVD의 경우 /data/data/패키지명/files 에 파일이 저장됨
     - mode
 
 모드          | 설명
@@ -228,8 +228,6 @@ package com.example.kwanwoo.filetest;
         }
     });
 ```
-
-**myfile.txt** 는 data/data/com.example.kwanwoo.filetest/files/ 에 위치
 
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap7/FileTest/app/src/main/java/com/example/kwanwoo/filetest/MainActivity.java]
 
@@ -435,7 +433,7 @@ class: center, middle
 ```java
 public class MainActivity extends AppCompatActivity {
 *   public static final String	PREFERENCES_GROUP = "MyPreference";
-    public static final String 	PREFERddENCES_ATTR = "TextInput";
+    public static final String 	PREFERENCES_ATTR = "TextInput";
 *   SharedPreferences	setting;
 
     public void onCreate(Bundle savedInstanceState) {
