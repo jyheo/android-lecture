@@ -13,6 +13,7 @@ class: center, middle
 * UPDATE
 * SELECT
 * Cursor
+* SimpleCursorAdapter
 
 ---
 ## SQLite 개요
