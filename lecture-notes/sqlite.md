@@ -28,14 +28,14 @@ class: center, middle
 ---
 ## SQL 구문
 * 데이터 정의 언어 (Data Definition Language)
-    - CREATE   [https://ko.wikipedia.org/wiki/CREATE_(SQL)]
-    - DROP     [https://ko.wikipedia.org/wiki/CREATE_(SQL)]
-    - ALTER     [https://ko.wikipedia.org/wiki/ALTER_(SQL)]
+    - <a href="https://ko.wikipedia.org/wiki/CREATE_(SQL)">CREATE</a> 테이블 생성
+    - <a href="https://ko.wikipedia.org/wiki/CREATE_(SQL)">DROP</a> 테이블 삭제
+    - <a href="https://ko.wikipedia.org/wiki/ALTER_(SQL)">ALTER</a> 테이블 속성 수정
 * 데이터 조작 언어 (Data Manipulation Language)
-    - INSERT INTO [https://ko.wikipedia.org/wiki/Insert_(SQL)]
-    - UPDATE ~ SET [https://ko.wikipedia.org/wiki/Update_(SQL)]
-    - DELETE FROM [https://ko.wikipedia.org/wiki/Delete_(SQL)]
-    - SELECT ~ FROM ~ WHERE [https://ko.wikipedia.org/wiki/Select_(SQL)]
+    - <a href="https://ko.wikipedia.org/wiki/Insert_(SQL)">INSERT INTO</a> 레코드(행) 추가
+    - <a href="https://ko.wikipedia.org/wiki/Update_(SQL)">UPDATE ~ SET</a> 레코드(행) 변경
+    - <a href="https://ko.wikipedia.org/wiki/Delete_(SQL)">DELETE FROM</a> 레코드(행) 삭제
+    - <a href="https://ko.wikipedia.org/wiki/Select_(SQL)">SELECT ~ FROM ~ WHERE</a> 레코드(행) 검색
 
 ---
 ## SQLiteOpenHelper 클래스
@@ -75,7 +75,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 *               ");");
     }
 
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 *       db.execSQL("DROP TABLE IF EXISTS schedule");
         onCreate(db);
     }
