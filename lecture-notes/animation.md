@@ -9,11 +9,10 @@ class: center, middle
 ---
 ## 애니메이션개요
 * 안드로이드 프레임워크의 애니메이션 종류
-    - 프로퍼티 애니메이션 (Android 3.0, API level11부터 제공)
     - 뷰 애니메이션 (오래전부터 제공된 기능)
         + 트윈 애니메이션
         + 드로워블 애니메이션 (프레임 애니메이션)
-
+    - 프로퍼티 애니메이션 (Android 3.0, API level11부터 제공)
 * 애니메이션 설정 방법
     - XML 파일 이용
     - 자바 프로그래밍 코드 이용
@@ -68,7 +67,6 @@ private void startCountDownFrameAnimation() {
     - Rotate: 회전 변환
     - Scale: 크기 변환
     - Translate: 이동 변환
-
 * 트윈 애니메이션 정의 XML 파일 위치
     - **res/anim**/filename.xml
 
@@ -258,11 +256,9 @@ animatorSet.start();
 ---
 ## 애니메니션 리스너
 * 애니메이션 종료 후에 곧바로 다른 일을 해야 한다면 애니메이션 객체에 AnimationListener 객체를 등록해야 함
-
 * AnimationListener 인터페이스
     - Animation.AnimationListener
     - Animator.AnimationListener
-
 * AnimationListener 객체 등록 방법
     - Animation.setAnimationListener(Animation.AnimationListener)
     - Animator.addListener(Animator.AnimationListener)
