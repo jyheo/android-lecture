@@ -24,8 +24,7 @@ $ make
 * Open .html with your web browser.
 
 ## Lecture notes & Labs
-
-[pdf : android-lecture-pdf-0.9-prerelease.tgz](https://github.com/jyheo/android-lecture/releases/download/0.9-prerelease/android-lecture-pdf-0.9-prerelease.tgz)
+* The files are **NOT UP-TO-DATED!**
 
 Lecture Notes | Labs
 ---------------|-------------------
@@ -36,8 +35,16 @@ Lecture Notes | Labs
 [Fragment](https://jyheo.github.io/android-lecture/fragment.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/fragment-lab.md)
 [ActionBar and Navigation](https://jyheo.github.io/android-lecture/actionbar-navigation.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/actionbar-navigation-lab.md)
 [Data Storage](https://jyheo.github.io/android-lecture/data-storage.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/data-storage-lab.md)
-[Location based service](https://jyheo.github.io/android-lecture/location.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/location-lab.md)
-[Animation and Graphics](https://jyheo.github.io/android-lecture/animation-graphics.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/animation-graphics-lab.md)
+[SQLite](https://jyheo.github.io/android-lecture/sqlite.html)  | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/sqlite-lab.md)
+[Animation](https://jyheo.github.io/android-lecture/animation.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/animation-lab.md)
+[Custom View](https://jyheo.github.io/android-lecture/custom-view.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/custom-view-lab.md)
 [Multimedia](https://jyheo.github.io/android-lecture/multimedia.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/multimedia-lab.md)
+[Graphics](https://jyheo.github.io/android-lecture/graphics.html) | Lab
+[Location based service](https://jyheo.github.io/android-lecture/location.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/location-lab.md)
 [Material Design](https://jyheo.github.io/android-lecture/material-design.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/material-design-lab.md)
 [Mobile Backend Service](https://jyheo.github.io/android-lecture/mobile-backend.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/mobile-backend-lab.md)
+
+## Contributor
+* Junyoung Heo
+* Kwanwoo Lee
+* Jae Moon Lee
