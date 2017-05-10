@@ -1,8 +1,12 @@
 # 애니메이션 실습
 
-이번 실습은 강의자료의 예제로 사용한 불꽃 애니메이션에 대한 실습입니다. 강의자료로 주어진 예제에서는 불꽃 애니메이션이 뷰 애니메이션의 일종인 트윈 애니메이션으로 구현되어있습니다.
+이번 실습은 불꽃 애니메이션에 대한 실습입니다. 강의자료로 주어진 예제에서는 불꽃 애니메이션이 뷰 애니메이션의 일종인 트윈 애니메이션으로 구현되어있습니다.
 
 <img src="images/animation-graphics-lab.png" width=300px>
+
+* 전체 예제 코드: https://github.com/kwanu70/AndroidExamples/tree/master/chap9/AnimationTest/app/src/main
+* 애니메이션 정의 파일: https://github.com/kwanu70/AndroidExamples/blob/master/chap9/AnimationTest/app/src/main/res/anim/fire.xml
+* 불꽃 이미지 파일:  https://github.com/kwanu70/AndroidExamples/blob/master/chap9/AnimationTest/app/src/main/res/drawable/fireworks_01.jpg
 
 ## 1. 이 불꽃 애니메이션을 프로퍼티 애니메이션의 ValueAnimator를 이용하여 구현하시오..
 [힌트]  
