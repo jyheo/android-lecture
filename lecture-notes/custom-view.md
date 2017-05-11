@@ -33,24 +33,25 @@ class: center, middle
 
 ```java
 public class MyView extends View {
-    Rect    rect;
+    Rect  rect = new Rect(10, 10, 110, 110);
+    int   color = Color.BLUE;
+    Paint paint = new Paint();
+
     public MyView(Context context) {
         super(context);
-        rect= new Rect(10, 10, 110, 110);
     }
-    public MyView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        Paint paint= new Paint();
-        paint.setColor(Color.BLUE);
+        paint.setColor(color);
         canvas.drawRect(rect, paint);
     }
-}
 
+}
+```
+
+```java
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
 <img src="images/ondraw.png" style="position:absolute; top:100px; right: 50px; width: 300px;">
 
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/CustomView/app/src/main/java/com/example/jyheo/customview/MyView.java]
+
 ---
 ## onDraw, invalidate
 <img src="images/ondraw-invalidate.png" width=80%>
@@ -72,16 +75,19 @@ public class MainActivity extends AppCompatActivity {
 ## onDraw, onTouch, invalidate
 
 ```java
-@Override
-public boolean onTouchEvent(MotionEvent event) {
-    if(event.getAction()==MotionEvent.ACTION_DOWN){
-        rect.left=(int)event.getX();
-        rect.top=(int)event.getY();
-        rect.right= rect.left+100;
-        rect.bottom= rect.top+100;
-        invalidate();
+public class MyView extends View {
+    ... 중략 ...
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction()== MotionEvent.ACTION_DOWN){
+            rect.left = (int)event.getX();
+            rect.top = (int)event.getY();
+            rect.right = rect.left + 100;
+            rect.bottom = rect.top + 100;
+*           invalidate();
+        }
+        return super.onTouchEvent(event);
     }
-    return super.onTouchEvent(event);
 }
 ```
 
@@ -89,32 +95,34 @@ public boolean onTouchEvent(MotionEvent event) {
 
 <img src="images/ondraw2.png" style="position:absolute; top:250px; right:100px; width: 200px">
 
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/CustomView/app/src/main/java/com/example/jyheo/customview/MyView.java]
+
 ---
 ## 커스텀 뷰 + xml
-
 ```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_custom_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kr.ac.hansung.jmlee.ch11_customview.CustomViewActivity">
-
-*   <kr.ac.hansung.jmlee.ch11_customview.MyView
-        android:text="TextView"
+    android:orientation="vertical"
+    tools:context="com.example.jyheo.customview.MainActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+*   <com.example.jyheo.customview.MyView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/textView" />
-</RelativeLayout>
+        android:layout_height="match_parent" />
+</LinearLayout>
 ```
 
 ```java
-public class CustomViewActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-*       setContentView(R.layout.activity_custom_view);
+*       setContentView(R.layout.activity_main);
         //setContentView(new MyView(this));
     }
 }
@@ -122,87 +130,45 @@ public class CustomViewActivity extends AppCompatActivity {
 
 <img src="images/ondraw.png" style="position:absolute; top:100px; right: 50px; width: 300px;">
 
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/CustomView/app/src/main/res/layout/activity_main.xml]
+
 ---
 ## 커스텀 뷰 + xml + AttributeSet
 
 ```xml
-<kr.ac.hansung.jmlee.ch11_customview.MyView
-    android:text="TextView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-*   mycolor="#ff0000"
-    android:id="@+id/textView"
-    />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    ... 중략 ... />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+    <com.example.jyheo.customview.MyView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+*       mycolor="#ff0000"/>
+</LinearLayout>
 ```
 
 ```java
-int color= Color.BLUE;
-*public MyView(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    rect= new Rect(10, 10, 110, 110);
-*   for(int i=0;i<attrs.getAttributeCount();i++){
-*       if(attrs.getAttributeName(i).equals("mycolor")){
-*           color= attrs.getAttributeIntValue(i, Color.GREEN);
-*       }
-*   }
-}
-@Override
-protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-    Paint paint= new Paint();
-*   paint.setColor(color);
-    canvas.drawRect(rect, paint);
+public class MyView extends View {
+    Rect  rect = new Rect(10, 10, 110, 110);
+    int   color = Color.BLUE;
+    Paint paint = new Paint();
+
+    public MyView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+*       color = attrs.getAttributeIntValue(null, "mycolor", Color.BLUE);
+    }
+
+    ... 하략 ...
 }
 ```
 
 <img src="images/ondraw-red.png" style="position:absolute; top:100px; right: 50px; width: 300px;">
 
----
-## Styleable의 사용
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-*   <declare-styleable name="JmleeStyle">
-*       <attr name="color" format="color"/>
-    </declare-styleable>
-</resources>
-```
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-*   xmlns:jmlee="http://schemas.android.com/apk/res/kr.ac.hansung.jmlee.ch11_customview"
-	...>
-
-    <kr.ac.hansung.jmlee.ch11_customview.MyView
-        ...
-*       jmlee:color="#FFFF0000"
-        android:id="@+id/textView"
-        />
-</RelativeLayout>
-```
-
----
-## Styleable의 사용
-
-```java
-public MyView(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    rect= new Rect(10, 10, 110, 110);
-    /*
-    for(int i=0;i<attrs.getAttributeCount();i++){
-        if(attrs.getAttributeName(i).equals("xcolor")){
-            color= attrs.getAttributeIntValue(i, Color.GREEN);
-        }
-    }
-    */
-*   TypedArray typedArray= context.obtainStyledAttributes(attrs, R.styleable.JmleeStyle, 0, 0);
-*   color= typedArray.getInteger(R.styleable.JmleeStyle_color, Color.BLUE);
-    typedArray.recycle();
-}
-```
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/CustomView/app/src/main/res/layout/activity_main.xml<br/>
+https://github.com/jyheo/AndroidTutorial/blob/master/CustomView/app/src/main/java/com/example/jyheo/customview/MyView.java]
 
 ---
 ## 그래픽 애니메이션: 볼 애니메이션
