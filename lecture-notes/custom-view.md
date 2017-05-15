@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-<img src="images/ondraw.png" style="position:absolute; top:100px; right: 50px; width: 300px;">
+<img src="images/ondrawt.png" style="position:absolute; top:100px; right: 50px; width: 300px;">
 
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/CustomView/app/src/main/res/layout/activity_main.xml]
 
