@@ -27,21 +27,21 @@ $ make
 * The files are **NOT UP-TO-DATED!**
 
 Lecture Notes | Labs
-[Android Intro](https://jyheo.github.io/android-lecture/lecture-notes/android-intro.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/android-intro-lab.html)
-[Android UI](https://jyheo.github.io/android-lecture/lecture-notes/android-ui.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/android-ui-lab.md)
-[Adapter View](https://jyheo.github.io/android-lecture/lecture-notes/adapter-view.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/adapter-view-lab.md)
-[Activity and Intent](https://jyheo.github.io/android-lecture/lecture-notes/activity-intent.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/activity-intent-lab.md)
-[Fragment](https://jyheo.github.io/android-lecture/lecture-notes/fragment.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/fragment-lab.md)
-[ActionBar and Navigation](https://jyheo.github.io/android-lecture/lecture-notes/actionbar-navigation.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/actionbar-navigation-lab.md)
-[Data Storage](https://jyheo.github.io/android-lecture/lecture-notes/data-storage.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/data-storage-lab.md)
-[SQLite](https://jyheo.github.io/android-lecture/lecture-notes/sqlite.html)  | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/sqlite-lab.md)
-[Animation](https://jyheo.github.io/android-lecture/lecture-notes/animation.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/animation-lab.md)
-[Custom View](https://jyheo.github.io/android-lecture/lecture-notes/custom-view.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/custom-view-lab.md)
-[Multimedia](https://jyheo.github.io/android-lecture/lecture-notes/multimedia.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/multimedia-lab.md)
+[Android Intro](https://jyheo.github.io/android-lecture/lecture-notes/android-intro.html) | [Lab](https://jyheo.github.io/android-lecture/labs/android-intro-lab.html)
+[Android UI](https://jyheo.github.io/android-lecture/lecture-notes/android-ui.html) | [Lab](https://jyheo.github.io/android-lecture/labs/android-ui-lab.md)
+[Adapter View](https://jyheo.github.io/android-lecture/lecture-notes/adapter-view.html) | [Lab](https://jyheo.github.io/android-lecture/labs/adapter-view-lab.md)
+[Activity and Intent](https://jyheo.github.io/android-lecture/lecture-notes/activity-intent.html) | [Lab](https://jyheo.github.io/android-lecture/labs/activity-intent-lab.md)
+[Fragment](https://jyheo.github.io/android-lecture/lecture-notes/fragment.html) | [Lab](https://jyheo.github.io/android-lecture/labs/fragment-lab.md)
+[ActionBar and Navigation](https://jyheo.github.io/android-lecture/lecture-notes/actionbar-navigation.html) | [Lab](https://jyheo.github.io/android-lecture/labs/actionbar-navigation-lab.md)
+[Data Storage](https://jyheo.github.io/android-lecture/lecture-notes/data-storage.html) | [Lab](https://jyheo.github.io/android-lecture/labs/data-storage-lab.md)
+[SQLite](https://jyheo.github.io/android-lecture/lecture-notes/sqlite.html)  | [Lab](https://jyheo.github.io/android-lecture/labs/sqlite-lab.md)
+[Animation](https://jyheo.github.io/android-lecture/lecture-notes/animation.html) | [Lab](https://jyheo.github.io/android-lecture/labs/animation-lab.md)
+[Custom View](https://jyheo.github.io/android-lecture/lecture-notes/custom-view.html) | [Lab](https://jyheo.github.io/android-lecture/labs/custom-view-lab.md)
+[Multimedia](https://jyheo.github.io/android-lecture/lecture-notes/multimedia.html) | [Lab](https://jyheo.github.io/android-lecture/labs/multimedia-lab.md)
 [Graphics](https://jyheo.github.io/android-lecture/lecture-notes/graphics.html) | Lab
-[Location based service](https://jyheo.github.io/android-lecture/lecture-notes/location.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/location-lab.md)
-[Material Design](https://jyheo.github.io/android-lecture/lecture-notes/material-design.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/material-design-lab.md)
-[Mobile Backend Service](https://jyheo.github.io/android-lecture/lecture-notes/mobile-backend.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/mobile-backend-lab.md)
+[Location based service](https://jyheo.github.io/android-lecture/lecture-notes/location.html) | [Lab](https://jyheo.github.io/android-lecture/labs/location-lab.md)
+[Material Design](https://jyheo.github.io/android-lecture/lecture-notes/material-design.html) | [Lab](https://jyheo.github.io/android-lecture/labs/material-design-lab.md)
+[Mobile Backend Service](https://jyheo.github.io/android-lecture/lecture-notes/mobile-backend.html) | [Lab](https://jyheo.github.io/android-lecture/labs/mobile-backend-lab.md)
 
 ## Contributor
 * Junyoung Heo
