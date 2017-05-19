@@ -27,7 +27,7 @@ $ make
 * The files are **NOT UP-TO-DATED!**
 
 Lecture Notes | Labs
-[Android Intro](https://jyheo.github.io/android-lecture/lecture-notes/android-intro.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/android-intro-lab.md)
+[Android Intro](https://jyheo.github.io/android-lecture/lecture-notes/android-intro.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/android-intro-lab.html)
 [Android UI](https://jyheo.github.io/android-lecture/lecture-notes/android-ui.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/android-ui-lab.md)
 [Adapter View](https://jyheo.github.io/android-lecture/lecture-notes/adapter-view.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/adapter-view-lab.md)
 [Activity and Intent](https://jyheo.github.io/android-lecture/lecture-notes/activity-intent.html) | [Lab](https://github.com/jyheo/android-lecture/blob/master/labs/activity-intent-lab.md)
