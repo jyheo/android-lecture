@@ -1,9 +1,9 @@
 VERSION=0.9-prerelease
 RELEASE=android-lecture-pdf-$(VERSION).tgz
 
-TARGETS=android-ui.html android-intro.html adapter-view.html activity-intent.html fragment.html actionbar-navigation.html data-storage.html sqlite.html location.html animation.html custom-view.html graphics.html multimedia.html material-design.html mobile-backend.html
+TARGETS=android-ui.html android-intro.html adapter-view.html activity-intent.html fragment.html actionbar-navigation.html data-storage.html sqlite.html location.html animation.html custom-view.html broadcast.html graphics.html multimedia.html material-design.html mobile-backend.html
 
-PDF-TARGETS=android-ui.pdf android-intro.pdf adapter-view.pdf activity-intent.pdf fragment.pdf actionbar-navigation.pdf data-storage.pdf sqlite.pdf location.pdf animation.pdf custom-view.pdf graphics.pdf multimedia.pdf material-design.pdf mobile-backend.pdf
+PDF-TARGETS=android-ui.pdf android-intro.pdf adapter-view.pdf activity-intent.pdf fragment.pdf actionbar-navigation.pdf data-storage.pdf sqlite.pdf location.pdf animation.pdf custom-view.pdf broadcast.pdf graphics.pdf multimedia.pdf material-design.pdf mobile-backend.pdf
 
 html: $(TARGETS)
 
