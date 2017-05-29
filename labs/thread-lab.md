@@ -60,9 +60,9 @@ public class Ball {
 * 레이아웃에 BallsView 넣기 참고: https://github.com/kwanu70/AndroidExamples/blob/master/chap9/GraphicsTest/app/src/main/res/layout/activity_main.xml#L17-L20
 * 터치 이벤트 처리 참고: https://github.com/kwanu70/AndroidExamples/blob/master/chap9/GraphicsTest/app/src/main/java/com/example/kwanwoo/graphicstest/AnimatedSurfaceView.java#L65
 
-## 3. SurfaceView에서 스레드를 생성하고, 스레드에서 Ball 클래스의 move와 draw메소드를 호출하여 볼 애니메이션을 프로그램하라. 이때 볼이 충돌하면 둘 중 하나를 제거하라.
+## 3. SurfaceView에서 쓰레드를 생성하고, 쓰레드에서 Ball 클래스의 move와 draw메소드를 호출하여 볼 애니메이션을 프로그램하라. 이때 볼이 충돌하면 둘 중 하나를 제거하라.
 * 참고:
 https://github.com/kwanu70/AndroidExamples/blob/master/chap9/GraphicsTest/app/src/main/java/com/example/kwanwoo/graphicstest/AnimatedSurfaceView.java#L65
 * 주의!:
-    - 터치 시 동작(메인 스레드)과 SurfaceView의 스레드(워커 스레드)간에 볼 리스트를 공유하므로 경쟁 조건에 조심!
-    - 볼 제거할 때 워크 스레드가 TextView의 내용을 직접 변경하지 않도록! 메인 스레드만 View를 변경할 수 있음!
+    - 터치 시 동작(메인 쓰레드)과 SurfaceView의 쓰레드(워커 쓰레드)간에 볼 리스트를 공유하므로 경쟁 조건에 조심!
+    - 볼 제거할 때 워크 쓰레드가 TextView의 내용을 직접 변경하지 않도록! 메인 쓰레드만 View를 변경할 수 있음!

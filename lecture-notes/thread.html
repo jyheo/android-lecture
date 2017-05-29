@@ -82,9 +82,9 @@ class: center, middle
 
 ---
 
-## 메인 스레드/서브 스레드
-* 메인 스레드
-* 서브(백그라운드, 워커) 스레드
+## 메인 쓰레드/서브 쓰레드
+* 메인 쓰레드
+* 서브(백그라운드, 워커) 쓰레드
 
 <img src="images/thread1.jpg" border=1 style="position:absolute; left:150px; bottom:200px; width:400px;">
 <img src="images/thread2.png" border=1 style="position:absolute; right:150px; bottom:150px; width:400px;">
@@ -117,8 +117,8 @@ public void onLongWaitClick(View v){
 
 ---
 ## Avoid Long Operation
-* 워커 스레드 생성 - 워커에서 UI(View) 변경
-    - 안드로이드에서는 UI(메인) 스레드만 View 변경이 가능함
+* 워커 쓰레드 생성 - 워커에서 UI(View) 변경
+    - 안드로이드에서는 UI(메인) 쓰레드만 View 변경이 가능함
 
 ```java
 public void onThreadExceptionClick(View v){
@@ -148,21 +148,21 @@ private class MyThread extends Thread{
 
 ---
 ## 해결 방법
-* 메인 스레드와 통신: 워커 스레드가 메인 스레드의 핸들러로 메시지를 보냄
-* runOnUiThread: 워커 스레드가 Runnable을 만들어서 runOnUiThread 호출
-* SurfaceView: SurfaceView는 메인 스레드가 아니어도 업데이트 가능
+* 메인 쓰레드와 통신: 워커 쓰레드가 메인 쓰레드의 핸들러로 메시지를 보냄
+* runOnUiThread: 워커 쓰레드가 Runnable을 만들어서 runOnUiThread 호출
+* SurfaceView: SurfaceView는 메인 쓰레드가 아니어도 업데이트 가능
 * 기타 방법으로 AsyncTask도 있음
 
 ---
-## 메인 스레드와 통신
+## 메인 쓰레드와 통신
 
 <img src="images/thread-com1.png" border=1 style="position:absolute; left:150px; top:150px; width:400px;">
 <img src="images/thread-com2.png" border=1 style="position:absolute; right:150px; bottom:150px; width:500px;">
 
 ---
-## 메인 스레드와 통신
-* 메인 스레드에서 핸들러 생성
-    - Handler 객체를 생성하기만 하면, 스레드의 메시지 루프에 자동으로 연결 됨
+## 메인 쓰레드와 통신
+* 메인 쓰레드에서 핸들러 생성
+    - Handler 객체를 생성하기만 하면, 쓰레드의 메시지 루프에 자동으로 연결 됨
 
 ```java
 
@@ -186,8 +186,8 @@ public void onThreadHandlerClick(View v){
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/ThreadEx/app/src/main/java/com/example/jyheo/threadex/MainActivity.java#L20]
 
 ---
-## 메인 스레드와 통신
-* 워커 스레드에서 메인 스레드의 핸들러로 메시지 전달
+## 메인 쓰레드와 통신
+* 워커 쓰레드에서 메인 쓰레드의 핸들러로 메시지 전달
 
 ```java
 private class MyThreadHandler extends Thread {
@@ -213,7 +213,7 @@ private class MyThreadHandler extends Thread {
 
 ---
 ## runOnUiThread
-* Runnable을 만들어서 메인 스레드에게 실행하도록 함(runOnUiThread 호출)
+* Runnable을 만들어서 메인 쓰레드에게 실행하도록 함(runOnUiThread 호출)
 
 ```java
 public void onThreadRunOnUIClick(View v) {
@@ -312,7 +312,7 @@ class BallAnimation extends Thread {
 }
 ```
 
-**주의** 메인 스레드와 별도의 스레드에서 볼 애니메이션 루프를 수행
+**주의** 메인 쓰레드와 별도의 쓰레드에서 볼 애니메이션 루프를 수행
 
 .footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap9/GraphicsTest/app/src/main/java/com/example/kwanwoo/graphicstest/AnimatedSurfaceView.java]
 
