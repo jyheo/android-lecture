@@ -25,7 +25,7 @@ public class Ball {
 
         width=height=RAD*2
         color = Color.rgb(Rnd.nextInt(256),Rnd.nextInt(256),
-		Rnd.nextInt(256));
+		                      Rnd.nextInt(256));
     }
 
     public void draw(Canvas canvas) {
