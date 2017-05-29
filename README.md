@@ -39,6 +39,7 @@ Lecture Notes | Labs
 [Animation](https://jyheo.github.io/android-lecture/lecture-notes/animation.html) | [Lab](https://jyheo.github.io/android-lecture/labs/animation-lab.html)
 [Custom View](https://jyheo.github.io/android-lecture/lecture-notes/custom-view.html) | [Lab](https://jyheo.github.io/android-lecture/labs/custom-view-lab.html)
 [Broadcast](https://jyheo.github.io/android-lecture/lecture-notes/broadcast.html) | [Lab](https://jyheo.github.io/android-lecture/labs/broadcast-lab.html)
+[Thread](https://jyheo.github.io/android-lecture/lecture-notes/thread.html) | [Lab](https://jyheo.github.io/android-lecture/labs/thread-lab.html)
 [Multimedia](https://jyheo.github.io/android-lecture/lecture-notes/multimedia.html) | [Lab](https://jyheo.github.io/android-lecture/labs/multimedia-lab.html)
 [Graphics](https://jyheo.github.io/android-lecture/lecture-notes/graphics.html) | Lab
 [Location based service](https://jyheo.github.io/android-lecture/lecture-notes/location.html) | [Lab](https://jyheo.github.io/android-lecture/labs/location-lab.html)
