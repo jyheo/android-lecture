@@ -78,6 +78,8 @@ layout: true
 ---
 class: center, middle
 # 멀티미디어
+### 오디오 재생, 녹음
+### 동영상 재생, 카메라 사용
 
 ---
 class: center, middle
@@ -141,11 +143,11 @@ mediaPlayer.start();
 * Uri 클래스의 주요 메소드
     - static Uri parse(String uriString) - Uri문자열로부터 Uri 객체 생성
 ```java
-	Uri image Uri = Uri.parse("file:///storage/emulated/0/Pictures/camera_image.jpg");
+	Uri image_Uri = Uri.parse("file:///storage/emulated/0/Pictures/camera_image.jpg");
 ```
-    - static Uri fromFile(File file) - file로부터 Uri 객체 생성
+    - static Uri.fromFile(File file) - file로부터 Uri 객체 생성
 ```java
-Uri image Uri = Uri.fromFile(
+Uri image_Uri = Uri.fromFile(
 	new File(Environment.getExternalStorageDirectory().getPath()+"/Pictures/camera_imge.jpg")));
 ```
 
@@ -347,13 +349,11 @@ class: center, middle
 * 카메라 앱 요청
 
 ```java
-static final int REQUEST_IMAGE_CAPTURE = 1;
-
 private void dispatchTakePictureIntent() {
 *   Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
         // resolveActivity(): takePictureIntent를 처리할 수 있는 (사진찍기) 액티비티 반환
-        startActivity(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        startActivity(takePictureIntent);
     }
 }
 ```
