@@ -24,7 +24,6 @@ $ make
 * Open .html with your web browser.
 
 ## Lecture notes & Labs
-* The files are **NOT UP-TO-DATED!**
 
 Lecture Notes | Labs
 --------------|------------------
@@ -45,6 +44,7 @@ Lecture Notes | Labs
 [Location based service](https://jyheo.github.io/android-lecture/lecture-notes/location.html) | [Lab](https://jyheo.github.io/android-lecture/labs/location-lab.html)
 [Material Design](https://jyheo.github.io/android-lecture/lecture-notes/material-design.html) | [Lab](https://jyheo.github.io/android-lecture/labs/material-design-lab.html)
 [Mobile Backend Service](https://jyheo.github.io/android-lecture/lecture-notes/mobile-backend.html) | [Lab](https://jyheo.github.io/android-lecture/labs/mobile-backend-lab.html)
+[UI Testing](https://jyheo.github.io/android-lecture/lecture-notes/ui-testing.html) | [Lab](https://jyheo.github.io/android-lecture/labs/debug-testing.html)
 
 ## Contributor
 * Junyoung Heo
