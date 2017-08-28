@@ -68,6 +68,21 @@
       small {
         font-size: 50%
       }
+	  
+	  @page {
+		size: 1210px 681px;
+		margin: 0;
+	  }
+
+	  @media print {
+	    .remark-slide-scaler {
+		  width: 100% !important;
+		  height: 100% !important;
+		  transform: scale(1) !important;
+		  top: 0 !important;
+		  left: 0 !important;
+	    }
+	  }
     </style>
   </head>
   <body>
@@ -552,7 +567,8 @@ public class MainActivity extends AppCompatActivity {
 
     </textarea>
     <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>-->
+	<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
     <script>
         var slideshow = remark.create({
           ratio: '16:9',

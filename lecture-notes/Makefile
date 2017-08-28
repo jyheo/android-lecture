@@ -7,7 +7,7 @@ PDF-TARGETS=android-ui.pdf android-intro.pdf adapter-view.pdf activity-intent.pd
 
 html: $(TARGETS)
 
-all: html pdf
+all: html
 
 %.html : %.md boilerplate.html
 	sed -e '/<textarea id="source">/r $<' boilerplate.html > $@
