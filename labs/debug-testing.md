@@ -14,3 +14,4 @@
 # 참고자료
 - Espresso를 이용한 안드로이드 UI 테스팅
 - http://www.vogella.com/tutorials/AndroidTestingEspresso/article.html
+- https://developer.android.com/training/testing/ui-testing/espresso-testing.html
