@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+       font-family: 'Yanone Kaffeesatz';
+       font-weight: 400;
+       margin-bottom: 0;
+       margin-top: 10px;
+      }
+      h1 { font-size: 60px; }
+      h2 { font-size: 3em; }
+      h3 { font-size: 1.6em; }
+      .remark-slide-content { font-size: 30px; }
+      .remark-slide-number { font-size: 18px; }
+      li { padding: 4px; }
+      li li { font-size: 80%; }
+      .footnote{ font-size: 13px; left: 50px; bottom: 12px; position: absolute; }
+      .top-line{ left: 0px; top: 0px; width: 100%; height: 1em; position: absolute; background-color: #70ad47}
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code { border-left: 6px solid orange; }
+      .left-column-70 {
+        width: 70%;
+        float: left;
+      }
+      .left-column-50 {
+        width: 50%;
+        float: left;
+      }
+      .right-column-30 {
+        width: 30%;
+        float: right;
+      }
+      .right-column-50 {
+        width: 50%;
+        float: right;
+      }
+      .right {
+        float: right;
+        margin-left: 1em;
+      }
+      strong {
+        color: red;
+      }
+      em {
+        color: darkblue;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 70%;
+      }
+      th, td {
+        text-align: left;
+      }
+      tr:nth-child(even){background-color: #f2f2f2}
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      small {
+        font-size: 50%
+      }
+	  
+	  @page {
+		size: 1210px 681px;
+		margin: 0;
+	  }
+
+	  @media print {
+	    .remark-slide-scaler {
+		  width: 100% !important;
+		  height: 100% !important;
+		  transform: scale(1) !important;
+		  top: 0 !important;
+		  left: 0 !important;
+	    }
+	  }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+.top-line[]
+
+---
+class: center, middle
+
+# 알림(Notification)
+
+---
+## 알림(Notification)
+* 단말기의 상단 부분에, 앱의 UI와 별도로 사용자에게 메시지를 표시
+
+<img src="images/noti.png" style="position:absolute;left:200px;top:200px;">
+<img src="images/noti_expand.png" style="position:absolute;right:200px;top:200px;">
+
+---
+## 알림 생성
+* NotificationCompat.Builder 객체에서 알림에 대한 UI 정보와 작업을 지정
+* NotificationCompat.Builder.build() 호출
+    - Notification 객체를 반환
+* NotificationManager.notify()를 호출해서 시스템에 Notification 객체를 전달
+
+
+---
+## 단순 알림 생성
+
+```java
+NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+
+mBuilder.setSmallIcon(R.drawable.ic_alarm_on_black_24dp);
+mBuilder.setContentTitle(getResources().getString(R.string.notif_title));
+mBuilder.setContentText(getResources().getString(R.string.notif_body));
+
+NotificationManager mNotificationManager =
+    (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+// MY_NOTIFICATION_ID allows you to update the notification later on.
+
+mNotificationManager.notify(MY_NOTIFICATION_ID, mBuilder.build());
+```
+
+<img src="images/noti_simple.png">
+
+.footnote[https://github.com/jyheo/AndroidTutorial/tree/master/Notification
+]
+---
+## 알림에 액티비티 연결하기
+* 알림을 터치하면 연결된 액티비티가 실행되도록 하는 것
+    - PendingIntent 사용
+
+```java
+NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+mBuilder.setSmallIcon(R.drawable.ic_alarm_on_black_24dp);
+mBuilder.setContentTitle(getResources().getString(R.string.notif_title));
+mBuilder.setContentText(getResources().getString(R.string.notif_body));
+
+*// PendingIntent
+*Intent intent = new Intent(this, TempActivity.class);
+*int requestID = (int) System.currentTimeMillis(); //unique requestID
+*int flags = PendingIntent.FLAG_CANCEL_CURRENT;
+*PendingIntent pIntent =
+*                 PendingIntent.getActivity(this, requestID, intent, flags);
+*mBuilder.setContentIntent(pIntent);
+mBuilder.setAutoCancel(true);NotificationManager mNotificationManager =
+        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+mNotificationManager.notify(MY_NOTIFICATION_ID, mBuilder.build());
+```
+
+.footnote[https://github.com/jyheo/AndroidTutorial/tree/master/Notification
+]
+---
+## 알림에 버튼 추가
+* 앞의 코드에 아래 코드를 추가하면 버튼이 추가됨
+
+```java
+Intent callintent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:1234"));
+requestID++; //unique requestID
+flags = PendingIntent.FLAG_CANCEL_CURRENT;
+pIntent = PendingIntent.getActivity(this, requestID, callintent, flags);
+*mBuilder.addAction(R.drawable.ic_phone_black_24dp, "Call", pIntent);
+```
+
+<img src="images/noti_button.png">
+
+.footnote[https://github.com/jyheo/AndroidTutorial/tree/master/Notification
+]
+---
+## 알림에 확장 뷰
+* 그림이나 장문을 추가하여 확장 뷰를 알림에 넣을 수 있음
+
+```java
+NotificationCompat.BigTextStyle btStyle =
+        new NotificationCompat.BigTextStyle().bigText(
+             getResources().getString(R.string.long_notification_body));
+mBuilder.setStyle(btStyle);
+```
+
+<img src="images/noti_text.png">
+
+.footnote[https://github.com/jyheo/AndroidTutorial/tree/master/Notification
+]
+---
+## 알림에 확장 뷰
+* 그림 넣은 확장 뷰
+
+```java
+Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
+                                                R.mipmap.ic_launcher);
+NotificationCompat.BigPictureStyle bpStyle =
+                new NotificationCompat.BigPictureStyle().bigPicture(largeIcon);
+mBuilder.setStyle(bpStyle);
+```
+
+<img src="images/noti_picture.png">
+
+.footnote[https://github.com/jyheo/AndroidTutorial/tree/master/Notification
+]
+
+    </textarea>
+    <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>-->
+	<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+          ratio: '16:9',
+          highlightStyle: 'github',
+          highlightLines: true
+        });
+    </script>
+    <!--<script src="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css">
+    <script>mermaid.initialize({startOnLoad:true});</script>-->
+  </body>
+</html>
