@@ -45,6 +45,7 @@ Lecture Notes | Labs
 [Material Design](https://jyheo.github.io/android-lecture/lecture-notes/material-design.html) | [Lab](https://jyheo.github.io/android-lecture/labs/material-design-lab.html)
 [Mobile Backend Service](https://jyheo.github.io/android-lecture/lecture-notes/mobile-backend.html) | [Lab](https://jyheo.github.io/android-lecture/labs/mobile-backend-lab.html)
 [UI Testing](https://jyheo.github.io/android-lecture/lecture-notes/ui-testing.html) | [Lab](https://jyheo.github.io/android-lecture/labs/debug-testing.html)
+[Notification](https://jyheo.github.io/android-lecture/lecture-notes/notification.html) | [Lab](https://jyheo.github.io/android-lecture/labs/notification-lab.html)
 
 ## Contributor
 * Junyoung Heo
