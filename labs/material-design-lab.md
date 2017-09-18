@@ -2,7 +2,7 @@
 
 리사이클러 뷰를 사용하여 다음과 같이 스태거 그리드로 항목을 나열하고, 항목을 표시하는 뷰는 카드 뷰를 이용하여 모서리를 둥글게 하고 그림자를 표시하라. 그리고 액션바의 +버튼을 누르면 새로 항목을 추가하고 DELETE 버튼을 누르면 해당 항목을 제거한다.
 
-<img src="images/material-design-lab.png" width=300px>
+![](images/material-design-lab.png)
 
 ## 리사이클러 뷰 사용하기
 
