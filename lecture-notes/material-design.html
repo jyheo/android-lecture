@@ -174,14 +174,14 @@ https://guides.codepath.com/android/using-the-recyclerview]
 ## RecyclerView
 * 주요 클래스
     - RecyclerView.Adapter – 데이터를 관리하고 뷰에 연결 시키는 역할
+    - RecyclerView.ViewHolder – 항목을 보여줄 뷰를 담아두는 상자
     - LayoutManager – 리스트의 항목 위치를 관리
-    - ItemAnimator – 항목 삭제나 추가와 같은 동작의 애니메이션
 * RecyclerView 사용
     1. RecyclerView support library를 gradle build file에 추가
     2. 데이터 소스로 사용할 모델 클래스 정의
     3. RecyclerView를 레이아웃에 추가
     4. 아이템 표시를 위한 커스텀 row layout XML을 추가
-    5. RecyclerView.Adapter와 ViewHolder를 생성
+    5. RecyclerView.Holder와 RecyclerView.Adapter를 생성
     6. 어댑터와 RecyclerView 연결
 
 ---
@@ -275,12 +275,42 @@ res/layout/item_contact.xml
 
 ---
 ## RecyclerView
-&nbsp;5. RecyclerView.Adapter와 ViewHolder를 생성
+&nbsp;5. RecyclerView.Holder와 RecyclerView.Adapter를 생성
 
+---
+## RecyclerView - ViewHolder
+* 뷰를 담아 두는 보관 상자
+
+```java
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
+* public static class ViewHolder extends RecyclerView.ViewHolder
+                                                    implements View.OnClickListener {
+      public TextView nameTextView;
+      public Button messageButton;
+
+      public ViewHolder(Context context, View itemView) {
+          super(itemView);
+          nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
+          messageButton = (Button) itemView.findViewById(R.id.message_button);
+          this.context = context;
+          messageButton.setOnClickListener(this);
+      }
+      @Override
+      public void onClick(View view) {
+          int position = getLayoutPosition();
+          Toast.makeText(context, nameTextView.getText() + Integer.toString(position),
+                         Toast.LENGTH_SHORT).show();
+      }
+  }
+  // ...
+}
+```
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/MaterialTest/app/src/main/java/com/example/jyheo/materialtest/ContactsAdapter.java]
 
 
 ---
-## RecyclerView.Adapter
+## RecyclerView - Adapter
 
 ```java
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
@@ -308,32 +338,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
 
 .footnote[https://github.com/jyheo/AndroidTutorial/blob/master/MaterialTest/app/src/main/java/com/example/jyheo/materialtest/ContactsAdapter.java]
 
----
-## RecyclerView - ViewHolder
-
-```java
-public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
-* public static class ViewHolder extends RecyclerView.ViewHolder
-                                                    implements View.OnClickListener {
-      // ...
-      public ViewHolder(Context context, View itemView) {
-          super(itemView);
-          nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-          messageButton = (Button) itemView.findViewById(R.id.message_button);
-          this.context = context;
-          messageButton.setOnClickListener(this);
-      }
-      @Override
-      public void onClick(View view) {
-          int position = getLayoutPosition();
-          Toast.makeText(context, nameTextView.getText() + Integer.toString(position),
-                         Toast.LENGTH_SHORT).show();
-      }
-  }
-  // ...
-  ```
-
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/MaterialTest/app/src/main/java/com/example/jyheo/materialtest/ContactsAdapter.java]
 
 ---
 ## RecyclerView
