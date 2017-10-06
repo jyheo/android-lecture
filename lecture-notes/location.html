@@ -112,20 +112,20 @@ class: center, middle
 
 ---
 ## Google Play Services 설정
-* Google Play Services  다운로드 및 설치
+* Google Play Services SDK 다운로드 및 설치
     - Tools>Android>SDK Manager 이용
-        + SDK Tools 탭에서 Google Play Services 선택 후 OK
+        + SDK Tools 탭에서
+        + Support Repository - Google Repository 선택 후 OK
 * 프로젝트에 라이브러리 추가
     1. build.gradle (Module:app) 파일 오픈
     2. 새로운 빌드 규칙 추가
 ```java
-apply plugin: 'com.android.application'
-    ...
-    dependencies {
-        compile 'com.google.android.gms:play-services-location:9.8.0'
-    }
+        dependencies {
+            ...
+            compile 'com.google.android.gms:play-services-location:11.0.4'
+        }
 ```
-    3. 툴바에서 “Sync Project with Graddle Files” (<img src="images/sync.png">) 클릭
+    3. 툴바에서 "Sync Project with Graddle Files(<img src="images/sync.png">)" 또는 Sync Now 클릭
 
 <img src="images/googleplay.png" width=300 style="top:150px; right:100px; position:absolute;">
 
@@ -136,83 +136,63 @@ apply plugin: 'com.android.application'
 * 위치 접근에 필요한 권한
     - ACCESS_COARSE_LOCATION : 대략적 위치 접근 허용 (도시의 블럭 단위)
     - ACCESS_FINE_LOCATION : 정밀한 위치 접근 허용
-
 * Android Manifest 파일에서 권한 설정
-
 ```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package=" com.example.kwanwoo.locationservicetest " >
-
-*   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-</manifest>
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.example.jyheo.locationplayservice">
+        ...
+    *   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    </manifest>
 ```
 
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap8/LocationServicesTest/app/src/main/AndroidManifest.xml]
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/LocationPlayService/app/src/main/AndroidManifest.xml]
 
 ---
 ## 위치 접근에 필요한 권한 얻기
 * Android 6.0 (API level 23) 이상부터는
     - 앱 실행 중에 사용하려는 권한(permission)을 반드시 요청
-
+* EasyPermission Library
+    - https://github.com/googlesamples/easypermissions
+    - build.gradle (Module:app) 파일에 EasyPermission 추가
 ```java
-private boolean isPermissionGranted() {
-     String[] PERMISSIONS_STORAGE = {    // 요청할 권한 목록을 설정
-         Manifest.permission.ACCESS_FINE_LOCATION
-     };
-
-*   if (ActivityCompat.checkSelfPermission(MainActivity.this,
-  	Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-*         ActivityCompat.requestPermissions(
-               MainActivity.this,			// MainActivity 액티비티의 객체 인스턴스를 나타냄
-               PERMISSIONS_STORAGE,        // 요청할 권한 목록을 설정한 String 배열
-               MY_PERMISSION_REQUEST_LOCATION );   // 사용자 정의 int 상수. 권한 요청 결과를 받을 때
-  	return false;
-     } else
-          return true;
-}
+            dependencies {
+                ...
+                compile 'pub.devrel:easypermissions:1.0.1'
+            }
 ```
-
-<img src="images/locationpermission.png" width=150px style="top:100px; right:100px; position:absolute;">
-
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap8/LocationServicesTest/app/src/main/java/com/example/kwanwoo/locationservicestest/MainActivity.java]
 
 ---
-## Google Play Services에 연결
+## 위치 접근에 필요한 권한 얻기
 
 ```java
-protected void onCreate(Bundle savedInstanceState) {
-    ...생략...
-*   mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(new MyConnectionCallBack())
-                .addOnConnectionFailedListener(new MyOnConnectionFailedListener())
-*               .addApi(LocationServices.API)
-                .build();
-}
-private class MyConnectionCallBack implements ConnectionCallBacks {
-    public void onConnected(Bundle bundle) { ... }  // 연결 성공시 호출
-    public void onConnectionSuspended(int i) { ... } // 일시 연결 해제시 호출
-}
-private class MyOnConnectionFailedListener implements
-	 OnConnectionFailedListener { ... } // 연결 실패시 호출
+public class MainActivity extends AppCompatActivity {
+    @Override
+*   public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Forward results to EasyPermissions
+*       EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
 
-protected void onStart() {
-    super.onStart();
-*   mGoogleApiClient.connect(); //연결 요청
-}
-protected void onStop() {
-*   mGoogleApiClient.disconnect(); //연결 해제 요청
-    super.onStop();
+*   @SuppressWarnings("MissingPermission")
+*   @AfterPermissionGranted(RC_LOCATION) // automatically re-invoked after getting the permission
+    public void getLastLocation() {
+        String[] perms = {Manifest.permission.ACCESS_COARSE_LOCATION};
+*       if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already Have permissions.
+
+        } else {
+            // Do not have permissions, request them now
+*           EasyPermissions.requestPermissions(this,
+                    "This app needs access to your location to know where you are.",
+*                   RC_LOCATION, perms);
+        }
+    }
 }
 ```
 
-<img src="images/locationservice.png" width=400 style="bottom:100px; right:100px; position:absolute;">
+<img src="images/locationpermission.png" width=150px style="bottom:50px; right:100px; position:absolute;">
 
-???
-Google Play Service에 연결하기 위해서는 그림과 같이 Google API Client 객체가 필요하며 이 객체를 통해 Google Play Service에 연결하게 된다.
-
-1. 먼저, onCreate()에서 GoogleApiClient.Builder 클래스를 사용하여 Google API Client 객체를 생성한다.
-2. 그리고 onStart()에서 Google API Client 객체의 connect() 메소드를 호출하여 연결 요청을 한다.
-3. 연결 요청이 성공하면 결과는 MyConnectionCallback의 onConnected()로 오게되고, 실패하게 되면 MyOnConnectionFailedListener로 오게된다.
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/LocationPlayService/app/src/main/java/com/example/jyheo/locationplayservice/MainActivity.java]
 
 ---
 ## 마지막으로 알려진 위치 얻기
@@ -222,21 +202,37 @@ Google Play Service에 연결하기 위해서는 그림과 같이 Google API Cli
     - 간단한 API 제공
         + 명시적인 위치 제공자 지정 없이, 상위 수준 요구사항 (높은 정확도, 저전력 등) 명세
 * Fused Location Provider의 getLastLocation() 메소드 이용
-    - 디바이스에 마지막으로 알려진 위치를 Location 객체 (위도, 경도, 정확도, 고도 값 등을 얻을 수 있음)로 반환
+    - Task 객체를 반환, Task가 완료 후 Task.getResult()를 통해 결과 받음
+    - 디바이스에 마지막으로 알려진 위치를 Location 객체 (위도, 경도, 정확도, 고도 값 등을 얻을 수 있음)로 받음
     - 위치가 가용하지 않으면 null값이 반환될 수 있음
 
+---
+## 마지막으로 알려진 위치 얻기
+
 ```java
-private class MyConnectionCallBack implements ConnectionCallbacks {
-    public void onConnected(Bundle bundle) { // Google Play Service에 연결된 상태
-        if (isPermissionGranted() {  // 위치 접근 권한이 허가된 상태
-*           mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
- 	          ...생략...
-        }
+public void onCreate(Bundle savedInstanceState) {
+    FusedLocationProviderClient mFusedLocationClient
+        = LocationServices.getFusedLocationProviderClient(this);
+}
+
+@AfterPermissionGranted(RC_LOCATION) // automatically re-invoked after getting the permission
+public void getLastLocation() {
+    String[] perms = {Manifest.permission.ACCESS_COARSE_LOCATION};
+    if (EasyPermissions.hasPermissions(this, perms)) {
+*       mFusedLocationClient.getLastLocation()
+*                   .addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
+                            if (task.isSuccessful() && task.getResult() != null) {
+*                               mLastLocation = task.getResult();
+                            }
+                        }
+                    });
     }
 }
 ```
 
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap8/LocationServicesTest/app/src/main/java/com/example/kwanwoo/locationservicestest/MainActivity.java]
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/LocationPlayService/app/src/main/java/com/example/jyheo/locationplayservice/MainActivity.java]
 
 ---
 ## 주기적인 위치 업데이트 시작하기
@@ -246,21 +242,24 @@ private class MyConnectionCallBack implements ConnectionCallbacks {
 
 ```java
 private void startLocationUpdates() {
-    LocationRequest locRequest = new LocationRequest();
-    ... // 위치 요청 설정 코드
+*   LocationRequest locRequest = new LocationRequest();
+    locRequest.setInterval(10000);
+    locRequest.setFastestInterval(5000);
+    locRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-	  mLocationListener = new LocationListener() {
-	      public void onLocationChanged(Location location) {// 위치 업데이트 콜백 정의
-            mCurrentLocation = location;
-	      }
+*   mLocationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            super.onLocationResult(locationResult);
+*           mLastLocation = locationResult.getLastLocation();
+            updateUI();
+        }
     };
-*   LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,
-                      locRequest,	 // 위치 요청 설정
-                      mLocationListener); // 위치 업데이트 콜백
+*   mFusedLocationClient.requestLocationUpdates(locRequest, mLocationCallback, Looper.myLooper());
 }
 ```
 
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap8/LocationServicesTest/app/src/main/java/com/example/kwanwoo/locationservicestest/MainActivity.java]
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/LocationPlayService/app/src/main/java/com/example/jyheo/locationplayservice/MainActivity.java]
 
 ---
 ## 위치 요청 설정
@@ -286,21 +285,12 @@ locRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 * 위치 업데이트 중단
 
 ```java
-@Override
-protected void onPause() {
-    super.onPause();
-    if (mGoogleApiClient.isConnected()
-        stopLocationUpdates();
-}
-
-private void stopLocationUpdates() {
-    if (mLocationListener != null && mGoogleApiClient != null)
-*       LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,
-        				mLocationListener); 	// 위치 업데이트 콜백
+public void stopLocationUpdate() {
+*   mFusedLocationClient.removeLocationUpdates(mLocationCallback);
 }
 ```
 
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap8/LocationServicesTest/app/src/main/java/com/example/kwanwoo/locationservicestest/MainActivity.java]
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/LocationPlayService/app/src/main/java/com/example/jyheo/locationplayservice/MainActivity.java]
 
 ---
 ## 주소 찾기
@@ -352,7 +342,7 @@ try {
 }
 ```
 
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap8/LocationServicesTest/app/src/main/java/com/example/kwanwoo/locationservicestest/MainActivity.java]
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/LocationPlayService/app/src/main/java/com/example/jyheo/locationplayservice/MainActivity.java]
 
 ---
 ## 주소 찾기
