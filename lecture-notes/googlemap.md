@@ -19,55 +19,59 @@ class: center, middle
 
 ---
 ## Google Play Services 설정
-* Google Play Service SDK 설치 (Tools>Android>SDK Manager 이용)
-* 안드로이드 프로젝트 생성
+* Google Play Services SDK 다운로드 및 설치
+    - Tools>Android>SDK Manager 이용
+        + SDK Tools 탭에서
+        + Support Repository - Google Repository 선택 후 OK
 * 프로젝트에 라이브러리 추가
     1. build.gradle (Module:app) 파일 오픈
-    2. 새로운 빌드 규칙 추가 (이후에, 오른쪽 위의 “Sync Now” 클릭)
+    2. 새로운 빌드 규칙 추가
 ```java
-apply plugin: 'com.android.application'
-    ...
-    dependencies {
-        ...
-        compile 'com.google.android.gms:play-services-maps:9.8.0'
-    }
+        dependencies {
+            ...
+            compile 'com.google.android.gms:play-services-maps:11.0.4'
+        }
 ```
+    3. 툴바에서 "Sync Project with Graddle Files(<img src="images/sync.png">)" 또는 Sync Now 클릭
+
+<img src="images/googleplay.png" width=300 style="top:150px; right:100px; position:absolute;">
+
+.footnote[출처: https://developers.google.com/android/guides/setup]
 
 ---
 ## Google Maps API 키 가져오기
 1. Google Developers Console https://console.developers.google.com/ 로 이동
-2. 프로젝트 만들기 (또는 선택)
+2. 프로젝트 만들기 (또는 기존 프로젝트 선택)
     - 프로젝트 이름 입력 후, 만들기 버튼 클릭
 3. Google Maps Android API 활성화
-    - API 목록 중 "Google Maps Android API" 선택 후, "사용 설정" 클릭
-4. API 키 획득
+    - API 목록(라이브러리 메뉴) 중 "Google Maps Android API" 선택 후, "사용 설정" 클릭
+4. 사용자 인증 정보, API 키 생성
     - <img src="images/mapapi1.png"> 클릭
-    - Google Maps Android API 선택 후, <img src="images/mapapi2.png"> 클릭하여 API 키  
-    (다음 형식: AIzaSyDo7I4h4OzrOb3MXYfWArS1fYo0rU0BiXg)를 얻는다.
+    - API 키 선택, 키(다음 형식: AIzaSyCnGHbf6vK3MXYfWArS1fYo0rU0BiXg)를 얻는다.
 
 ---
 ## 앱에 지도 추가 및 설정
 * Manifest 파일에 **API 키 추가**
-
-```xml
-<application ...>
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-*       android:value="AIzaSyDo7I4h4OzrOb3MXYfWArS1fYo0rU0BiXg" />
-	  ...
-</application>
-```
-
+    ```xml
+    <application ...>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+    *       android:value="AIzaSyCnGHbf6vK3MXYfWArS1fYo0rU0BiXg" />
+    	  ...
+    </application>
+    ```
 * Activity에 지도를 위한 프레그먼트 추가
-
 ```xml
-<RelativeLayout ...>
-*   <fragment
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-*       android:name="com.google.android.gms.maps.SupportMapFragment" />
-</RelativeLayout>
+    <LinearLayout ... >
+    *   <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+    *       android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.example.jyheo.googlemaptest.MapsActivity" />
+    </LinearLayout>
 ```
 
 ???
@@ -75,7 +79,7 @@ com.google.android.gms.maps.SupportMapFragment는 API 11 디바이스까지 지�
 
 ---
 ## 앱 실행시키기
-* 실제 Android 기기에서 앱 실행 (1주차 강의자료 참조)
+* 실제 Android 기기에서 앱 실행
     - Android 기기를 USB로 컴퓨터와 연결 및 USB 드라이버 설치
     - 개발자 옵션 활성화
     - 에뮬레이터에서도 실행 가능하나, 실제 Android 기기에서 실행을 추천
@@ -86,24 +90,21 @@ com.google.android.gms.maps.SupportMapFragment는 API 11 디바이스까지 지�
 ---
 ## 앱에서 지도 사용하기
 * OnMapReadyCallback 인터페이스를 구현
+    ```java
+    public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+        public void onMapReady(GoogleMap googleMap) {
 
-```java
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
-    public void onMapReady(GoogleMap googleMap) {
-
+        }
     }
-}
 ```
-
-* MapFragment (또는 MapView) 객체에서 콜백의 인스턴스를 설정
-
-```java
-protected void onCreate(Bundle savedInstanceState) {
-    ...생략...
-    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-            .findFragmentById(R.id.map);
-*   mapFragment.getMapAsync(this);
-}
+* MapFragment 객체에 콜백의 인스턴스를 설정
+    ```java
+    protected void onCreate(Bundle savedInstanceState) {
+        ...생략...
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+    *   mapFragment.getMapAsync(this);
+    }
 ```
 
 ---
@@ -118,14 +119,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
 *       gMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-
 	      // move the camera
 *       gMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
 ```
 
-.footnote[https://github.com/kwanu70/AndroidExamples/blob/master/chap8/SampleMapTest/app/src/main/java/com/example/kwanwoo/samplemaptest/MainActivity.java]
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/GoogleMapTest/app/src/main/java/com/example/jyheo/googlemaptest/MapsActivity.java]
 
 ---
 ## 지도에 마커 추가 및 설정
@@ -183,7 +183,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
 ---
 ## 카메라 이동
 * 카메라 위치를 변경하여 지도에서 보이는 부분을 변경
-* CamaraUpdateFactory를 사용하여 다양한 유형의 CameraUpdate 생성
+* CamaraUpdateFactory를 사용하여 다양한 CameraUpdate 생성
     - **확대/축소 수준 변경**
         + CameraUpdateFactory.zoomIn(), CameraUpdateFactory.zoomOut()
         + CameraUpdateFactory.zoomTo(float),

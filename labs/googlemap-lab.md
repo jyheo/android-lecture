@@ -14,11 +14,11 @@
 [힌트]
 
 참조코드:  
-https://github.com/kwanu70/AndroidExamples/blob/master/chap8/LocationServicesTest/app/src/main/java/com/example/kwanwoo/locationservicestest/MainActivity.java (현재 위치 알아내는 방법)
+https://github.com/jyheo/AndroidTutorial/blob/master/LocationPlayService/app/src/main/java/com/example/jyheo/locationplayservice/MainActivity.java#L102-L126 (현재 위치 알아내는 방법)
 
-https://github.com/kwanu70/AndroidExamples/blob/master/chap8/SampleMapTest/app/src/main/java/com/example/kwanwoo/samplemaptest/MainActivity.java 32번째줄 (지정된 위치로 지도 이동 방법)
+https://github.com/jyheo/AndroidTutorial/blob/master/GoogleMapTest/app/src/main/java/com/example/jyheo/googlemaptest/MapsActivity.java#L44 (지정된 위치로 지도 이동 방법)
 
-https://github.com/googlemaps/android-samples/blob/master/ApiDemos/app/src/main/java/com/example/mapdemo/CameraDemoActivity.java 118번째 줄 (지정된 위치와 줌 레벨 10으로 지도 이동 방법)
+https://github.com/googlemaps/android-samples/blob/master/ApiDemos/app/src/main/java/com/example/mapdemo/CameraDemoActivity.java#L118 (지정된 위치와 줌 레벨 10으로 지도 이동 방법)
 
 ## 3.  EditText 창에 찾고자 하는 장소 이름을 입력한 후에 Button을 클릭하면, Geocoder를 이용하여 입력된 장소 이름으로부터 위치(위도, 경도 값)를 얻고(편의상 첫번째 결과만 이용),
 * 해당 위치 정보를 TextView 창에 표시
@@ -28,7 +28,7 @@ https://github.com/googlemaps/android-samples/blob/master/ApiDemos/app/src/main/
 [힌트]
 
 참조코드:  
-https://github.com/kwanu70/AndroidExamples/blob/master/chap8/SampleMapTest/app/src/main/java/com/example/kwanwoo/samplemaptest/MainActivity.java 29번째 줄 (해당 위치 마커 표시 방법)
+https://github.com/jyheo/AndroidTutorial/blob/master/GoogleMapTest/app/src/main/java/com/example/jyheo/googlemaptest/MapsActivity.java#L43 (해당 위치 마커 표시 방법)
 
 [실행 결과 예시] "낙산공원" 입력후, 검색(Find) 버튼을 누른 결과
 
