@@ -4,11 +4,11 @@
 
 ## 1. 다음과 같은 레이아웃을 가지는 MainActivity를 실행시켰을 때, <fragment> 부분에 GoogleMap을 표시하여라
 
-<img src="images/location-lab1.png" width=500px>
+![](images/location-lab1.png)
 
 ## 2. Google Play Service의 Location API 이용을 위한 설정을 한 후에, Fused Location Provider의 getLastLocation() 메소드를 이용하여 현재 위치를 얻어 내고, GoogleMap을 줌 레벨은 15의 현재 위치로 이동하여 표시하라.
 
-<img src="images/location-lab2.png" width=200px>
+![](images/location-lab2.png)
 (가정: 현재 위치-한성대학교)
 
 [힌트]
@@ -32,4 +32,4 @@ https://github.com/jyheo/AndroidTutorial/blob/master/GoogleMapTest/app/src/main/
 
 [실행 결과 예시] "낙산공원" 입력후, 검색(Find) 버튼을 누른 결과
 
-<img src="images/location-lab3.png" width=500px>
+![](images/location-lab3.png)
