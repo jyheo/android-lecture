@@ -11,6 +11,7 @@ class: center, middle
     - 아파치 usergrid: http://usergrid.apache.org
     - BAASBOX: http://www.baasbox.com
 
+
 * BaaS(Backend as a Service) 사용
     - Google의 백앤드 서비스 - Firebase
     - https://firebase.google.com
@@ -25,8 +26,10 @@ class: center, middle
 * Android Studio 2.2 이상 필요
     - 구글 계정 필요!
 
+
 * Tools > Firebase 메뉴 선택
     - 오른쪽 같은 Assistant가 생김
+
 
 * Authentication 을 선택하고
     - Email and password authentication
