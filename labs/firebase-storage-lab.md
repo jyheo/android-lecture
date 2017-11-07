@@ -23,18 +23,3 @@ Firebase의 RemoteConfig, Stroage를 실습한다.
       https://github.com/jyheo/AndroidTutorial/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/MainActivity.java#L83-L88
     - Storage에서 이미지 읽어서 표시하는 부분  
       https://github.com/jyheo/AndroidTutorial/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/MainActivity.java#L62-L81
-
-
-## 참고
-* 에뮬레이터를 이용할 경우 build.gradle (app) 파일에서 firebase 버전을 최신 버전으로 할 경우 에뮬레이터의 구글 서비스 버전이 낮아서 실행이 제대로 안될 수 있음. 그럴 때에는 버전을 낮춰서(예를 들어 9.6.1) 빌드하여 실행하면 됨.
-
-```java
-dependencies {
-    ...
-    compile 'com.google.firebase:firebase-auth:9.6.1'
-    compile 'com.google.firebase:firebase-storage:9.6.1'
-    compile 'com.google.firebase:firebase-config:9.6.1'
-    compile 'com.google.firebase:firebase-messaging:9.6.1'
-    ...
-}
-```

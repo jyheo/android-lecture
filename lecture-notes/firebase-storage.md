@@ -204,4 +204,3 @@ public void onFetchButton(View v) {
 <img src="images/firebaseconsolerc.png" width=90%>
 
 
-    - FirebaseInstanceId.getInstance().getToken()의 리턴 값
