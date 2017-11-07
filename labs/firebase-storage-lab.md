@@ -1,8 +1,8 @@
-# 모바일 백앤드 서비스 실습
+# Firebase Storage, RemoteConfig
 
 ## 실습 개요
 
-Firebase의 Notification과 RemoteConfig, Stroage를 실습한다.
+Firebase의 RemoteConfig, Stroage를 실습한다.
 
 
 ## Firebase 준비
@@ -24,10 +24,6 @@ Firebase의 Notification과 RemoteConfig, Stroage를 실습한다.
     - Storage에서 이미지 읽어서 표시하는 부분  
       https://github.com/jyheo/AndroidTutorial/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/MainActivity.java#L62-L81
 
-## Notification 보내서 앱 실행하기
-* 앱을 실행 한 후 홈 버튼을 눌러서 비활성화 시킨다.
-* Firebase console의 Notification에서 메시지를 보낸다.
-* 시스템 상단에 알림이 뜨면 해당 알림을 클릭하여 앱을 실행(활성화) 시킨다.
 
 ## 참고
 * 에뮬레이터를 이용할 경우 build.gradle (app) 파일에서 firebase 버전을 최신 버전으로 할 경우 에뮬레이터의 구글 서비스 버전이 낮아서 실행이 제대로 안될 수 있음. 그럴 때에는 버전을 낮춰서(예를 들어 9.6.1) 빌드하여 실행하면 됨.
