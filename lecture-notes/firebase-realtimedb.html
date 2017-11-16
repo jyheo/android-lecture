@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+       font-family: 'Yanone Kaffeesatz';
+       font-weight: 400;
+       margin-bottom: 0;
+       margin-top: 10px;
+      }
+      h1 { font-size: 60px; }
+      h2 { font-size: 3em; }
+      h3 { font-size: 1.6em; }
+      .remark-slide-content { font-size: 30px; }
+      .remark-slide-number { font-size: 18px; }
+      li { padding: 4px; }
+      li li { font-size: 80%; }
+      .footnote{ font-size: 13px; left: 50px; bottom: 12px; position: absolute; }
+      .top-line{ left: 0px; top: 0px; width: 100%; height: 1em; position: absolute; background-color: #70ad47}
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code { border-left: 6px solid orange; }
+      .left-column-70 {
+        width: 70%;
+        float: left;
+      }
+      .left-column-50 {
+        width: 50%;
+        float: left;
+      }
+      .right-column-30 {
+        width: 30%;
+        float: right;
+      }
+      .right-column-50 {
+        width: 50%;
+        float: right;
+      }
+      .right {
+        float: right;
+        margin-left: 1em;
+      }
+      strong {
+        color: red;
+      }
+      em {
+        color: darkblue;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 70%;
+      }
+      th, td {
+        text-align: left;
+      }
+      tr:nth-child(even){background-color: #f2f2f2}
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      small {
+        font-size: 50%
+      }
+	  
+	  @page {
+		size: 1210px 681px;
+		margin: 0;
+	  }
+
+	  @media print {
+	    .remark-slide-scaler {
+		  width: 100% !important;
+		  height: 100% !important;
+		  transform: scale(1) !important;
+		  top: 0 !important;
+		  left: 0 !important;
+	    }
+	  }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+.top-line[]
+
+---
+class: center, middle
+# 모바일 백앤드서비스(Firebase)
+## Realtime Database
+
+---
+## Realtime Database
+* 연결된 모든 클라이언트들이 클라우드 데이터베이스와 싱크를 할 수 있음
+* 오프라인이 되더라도 데이터베이스를 사용할 수 있음
+* 데이터는 테이블이 아니라 JSON 트리 형태로 저장됨
+* Firebase Assistant에서 Realtime Database
+    - Save and retrieve data 선택  
+    <img src="images/firebasertdb.png" width=500px>
+
+---
+## Realtime Database
+* 한번 Firebase에 연결했다면, Connected로 나옴
+<img src="images/firebasertdbadd.png">
+* Add the Realtime Database to your app 버튼 클릭
+
+---
+## Realtime Database 
+* Accept Changes
+
+<img src="images/firebasertdbaccept.png">
+
+---
+## 데이터 쓰기
+* 데이터베이스 레퍼런스를 가져와서 setValue()를 호출하여 씀
+
+```java
+// Write a message to the database
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+DatabaseReference myRef = database.getReference("message");
+
+myRef.setValue("sample data");
+```
+
+![](images/realtimedb.png)
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/MainActivity.java#L125-L129]
+
+---
+## 데이터 읽기
+* ValueEventListener를 등록, 해당 값이 변경될 때마다 알려줌
+* ValueEventListener를 등록하고 한번만 알려주길 원하면 addListenerForSingleValueEvent()를 사용
+* ValueEventListener등록을 취소: removeEventListener()
+
+```java
+myRef.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        String value = dataSnapshot.getValue(String.class);
+        Log.d(TAG, "Value is: " + value);
+    }
+
+    @Override
+    public void onCancelled(DatabaseError error) {
+        Log.w(TAG, "Failed to read value.", error.toException());
+    }
+});
+```
+
+.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/MainActivity.java#L138-L152]
+
+
+---
+## 데이터 구조
+* JSON 트리
+* child(): 자식 노드의 DatabaseReference를 가져옴
+
+```java
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+DatabaseReference myRef = database.getReference("users");
+String userid = "aloverlace"
+String username = "Ada Lovelace"
+myRef.child(userid).child("name").setValue(username)
+```
+
+<img src="images/realtimedb2.png" style="position:absolute;right:100px;bottom:150px">
+
+---
+## 데이터 구조
+* push(), 고유한 아이디를 갖는 자식 노드를 생성함
+* Map<String, Object> 형태의 값을 저장하는 예
+
+```java
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+DatabaseReference myRef = database.getReference("posts");
+String key = myRef.push().getKey();
+HashMap<String, Object> postValues = new HashMap<>();
+postValues.put("uid", "aloverlace");
+postValues.put("author", "Ada Lovelace");
+postValues.put("title", "hello post");
+postValues.put("body", "hello body");
+postValues.put("starCount", 0);
+
+myRef.child(key).setValue(postValues);
+```
+
+<img src="images/realtimedb3.png" style="position:absolute;right:100px;bottom:100px">
+
+
+---
+## 트랜잭션
+* 트랜잭션 처리, runTransaction()
+
+```java
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+DatabaseReference myRef = database.getReference("posts/-Kz4JAW5cxfcezCgBjRi");
+myRef.runTransaction(new Transaction.Handler() {
+	@Override
+	public Transaction.Result doTransaction(MutableData mutableData) {
+*		Long starCount = mutableData.child("starCount").getValue(Long.class);
+		starCount++;
+*		mutableData.child("starCount").setValue(starCount);
+		return Transaction.success(mutableData);
+	}
+
+	@Override
+	public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+		Log.d(TAG, "Transaction:onComplete:" + databaseError);
+	}
+});
+```
+
+---
+## 데이터 정렬과 필터링
+* 데이터 정렬
+	- orderByChild(), orderByKey(), orderByValue()
+		```java
+		DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+		*Query TopPostsQuery = databaseReference.child("posts").orderByChild("starCount");
+		TopPostsQuery.addValueEventListener(new ValueEventListener() {
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot) {
+		*		for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+					// TODO: handle the post
+				}
+			}
+			...
+		}
+		```
+* 필터링
+	- limitToFirst(), limitToLast()
+		```java
+		// Last 100 posts, these are automatically the 100 most recent
+		Query recentPostsQuery = databaseReference.child("posts").limitToFirst(100);
+		```
+	
+---
+## 종합 예제
+* https://github.com/firebase/quickstart-android/tree/master/database
+
+    </textarea>
+    <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>-->
+	<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+          ratio: '16:9',
+          highlightStyle: 'github',
+          highlightLines: true
+        });
+    </script>
+    <!--<script src="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css">
+    <script>mermaid.initialize({startOnLoad:true});</script>-->
+  </body>
+</html>
