@@ -1,7 +1,7 @@
 VERSION=0.9-prerelease
 RELEASE=android-lecture-pdf-$(VERSION).tgz
 
-TARGETS=android-ui.html android-intro.html adapter-view.html activity-intent.html fragment.html actionbar-navigation.html data-storage.html sqlite.html location.html googlemap.html animation.html custom-view.html broadcast.html thread.html graphics.html multimedia.html material-design.html mobile-backend.html ui-testing.html notification.html firebase-login.html firebase-storage.html firebase-messaging.html firebase-realtimedb.html
+TARGETS=android-ui.html android-intro.html adapter-view.html activity-intent.html fragment.html actionbar-navigation.html data-storage.html sqlite.html location.html googlemap.html animation.html custom-view.html broadcast.html thread.html graphics.html multimedia.html material-design.html mobile-backend.html ui-testing.html notification.html firebase-login.html firebase-storage.html firebase-messaging.html firebase-realtimedb.html sensor.html
 
 PDF-TARGETS=android-ui.pdf android-intro.pdf adapter-view.pdf activity-intent.pdf fragment.pdf actionbar-navigation.pdf data-storage.pdf sqlite.pdf location.pdf animation.pdf custom-view.pdf broadcast.pdf thread.pdf graphics.pdf multimedia.pdf material-design.pdf mobile-backend.pdf ui-testing.pdf notification.pdf
 
