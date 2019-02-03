@@ -9,11 +9,8 @@ class: center, middle
 ---
 ## Contents
 * 학습목표
-
   * 모바일 운영체제의 일반적인 특징과 구글의 안드로이드의 주요 특징 및 전체적인 아키텍처를 알아본다.
-
   * 안드로이드 앱 개발을 위한 개발 환경을 설치한다.
-
   * 안드로이드 스튜디오를 이용하여 HelloAndroid 앱을 생성하고 실행해 본다.
 
 ---
@@ -23,7 +20,6 @@ class: center, middle
   * 스마트폰을 이용하여 음악감상, 동영상 감상, 카메라 촬영 등의 다양한 작업이 가능
   * 스마트폰 제조사가 아닌 제3자가 개발한 응용 프로그램(일명 앱)을 추가 설치하여 더욱 많은 기능 제공
   * 다양한 모바일 디바이스: 태블릿, 웨어러블 디바이스(스마트 와치, 구글 글래스 등)
-
 * 모바일 환경 SW 개발의 발달 배경
   * 작은 부피로도 많은 데이터의 저장이 가능한 메모리
   * 프로세서 파워의 향상
@@ -36,15 +32,13 @@ class: center, middle
 * 데스크톱 운영체제에 비해 부피가 작은 하드웨어를 대상으로 함
 * 모바일 운영체제의 종류
   * 안드로이드 (Google)
-  * IOS (Apple)
+  * iOS (Apple)
   * Window Phone (Microsoft)
-  * Symbian (Nokia)
-  * BlackBerry
-  * Java ME
 
-<img src="images/marketshare.png" width=500 style="bottom: 100px; right: 150px; position: absolute">
 
-.footnote[http://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=1]
+<img src="images/marketshare.png" width=500 style="bottom: 50px; right: 150px; position: absolute">
+
+.footnote[https://www.statista.com/statistics/266136/global-market-share-held-by-smartphone-operating-systems/]
 
 ---
 ## 안드로이드 개요
@@ -60,15 +54,16 @@ class: center, middle
 * 안드로이드 버전
   * 2008년 9월 **A** ndroid 1.0 (API level 1)출시
   * ...
-  * 2015년 10월 **M** arshmallow 6.0 (API level 23)
-  * 2016년 9월 **N** ougat 7.0 (API level 24)
-
+  * 2015년 10월 **M** arshmallow 6.0-6.01 (API level 23)
+  * 2016년 8월 **N** ougat 7.0-7.1.2 (API level 24-25)
+  * 2017년 8월 **O** reo 8.0-8.1 (API level 26-27)
+  * 2018년 8월 **P** ie 9.0 (API level 28)
 * 안드로이드 오픈 소스 프로젝트
   * https://source.android.com/index.html
 
 ???
 
-* 안드로이드의 코드명은 알파벳 순으로 A부터 시작하여 현재 N인 Nougat까지 출시되었다.
+* 안드로이드의 코드명은 알파벳 순으로 A부터 시작하여 현재 P인 Pie까지 출시되었다.
 * 안드로이드는 오픈 소스 프로젝트이지만, 일반 삼성이나 LG와 같은 스마트폰 제조사에서는 안드로이드 오픈 소스를 기반으로 구글이 릴리즈하는 것을 사용한다.
 * 또한 구글 플레이등을 이용하기 위해서는 구글이 릴리즈하는 버전을 사용해야 한다.
 
@@ -90,19 +85,14 @@ class: center, middle
 
 ---
 ## 개발환경 설치
-1. Java SE Development Kit 8 설치
-	http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-
-2. Android Studio를 다운로드 하여 설치.
-	https://developer.android.com/studio/index.html
-
-3. SDK Manager를 이용하여 최신 SDK 도구와 플랫폼을 설치
+* Android Studio를 다운로드 하여 설치.
+  * https://developer.android.com/studio/
 
 ???
 
 * 안드로이드는 기본적으로 자바를 이용하여 개발한다.
 * 성능이 요구되는 응용이나 라이브러리 개발을 위해 Native로 만들 수 있는 NDK도 제공한다.
-* 예전에는 이클립스를 기본 개발 환경으로 사용했으나 지금은 Intellij를 기반으로하는 안드로이드 스튜디오를 기본으로 사용한다.
+* 예전에는 JDK를 별도로 설치하였으나, 이제는 Android Studio 설치 파일에 OpenJDK가 포함되어 있어서 별도로 설치할 필요가 없다.
 
 ---
 ## HelloAndroid
@@ -125,13 +115,11 @@ class: center, middle
 ## helloandroid (계속)
 * 생성한 HelloAndroid를 에뮬레이터로 실행
     1. Run > Run 'app'
-
 * 에뮬레이터 생성
     1. Create New Virtual Device
     2. Phone, Nexus 4
-    3. Nougat x86 선택
+    3. Pie x86 선택
     4. Finish
-
 * 에뮬레이터 선택하고 실행
 
 <img src="images/helloandroid2.png" width=300 style="right:100px; bottom:50px; position:absolute">
@@ -139,12 +127,11 @@ class: center, middle
 ---
 ## 실제 디바이스에서 실행하기
 * 1. PC에 해당 디바이스용 USB 드라이버 설치
-  - 삼성: http://local.sec.samsung.com/comLocal/support/down/kies_main.do?kind=usb
-  - LG: http://www.lgmobile.co.kr/lgmobile/front/download/retrieveDownloadMain.dev
-
-* 2. 디바이스와 PC를 연결하고, 설정 변경하기
+  - https://developer.android.com/studio/run/oem-usb
+  - Windows에서 개발할 경우만 USB 드라이버 설치가 필요함
+* 2. 디바이스와 PC를 USB케이블로 연결하고, 설정 변경하기
   - '환경설정(Settings) > 개발자 옵션(Developer Options)' 선택 후, **'USB 디버깅'** 허용
-    - (개발자 옵션이 안보이는 경우) '환경설정(Settings) > 디바이스 정보' 선택 후, 빌드번호 정보를 손가락으로 7번 터치하면, '환경설정>개발자옵션' 메뉴가 나타남
+  - (개발자 옵션이 안보이는 경우) '환경설정(Settings) > 디바이스 정보' 선택 후, 빌드번호 정보를 손가락으로 7번 터치하면, '환경설정>개발자옵션' 메뉴가 나타남
 
 ---
 ## 실제 디바이스에서 실행하기 (계속)
