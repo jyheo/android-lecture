@@ -58,7 +58,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 
 <img src="images/ui_size.png" width=250 style="top:150px; right:100px; position:absolute">
 
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/ui_component_size.xml]
+.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/ui_component_size.xml]
 
 ---
 ## 레이아웃(Layout)
@@ -129,7 +129,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 
 <img src="images/arrowright.png" width=50 style="top:200px; right:350px; position:absolute;">
 
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/activity_main.xml]
+.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/activity_main.xml]
 
 ???
 
@@ -169,7 +169,7 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 
 <img src="images/arrowright.png" width=50 style="top:400px; right:350px; position:absolute;">
 
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/activity_main.xml]
+.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/activity_main.xml]
 
 ???
 * 앞의 layout_weight=1과 동일한 값이 있음, 이는 앞의 LinearLayout과 이 LinearLayout의 크기 비율이 1:1이란 것을 의미함, 따라서 화면에서 절반씩 자리를 차지하고 있게 됨
@@ -285,7 +285,7 @@ class: center, middle
 
 <img src="images/arrowright.png" width=50 style="top:200px; right:350px; position:absolute;">
 
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/res/layout/margin_padding_gravity.xml]
+.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/margin_padding_gravity.xml]
 
 ???
 layout_margin은 해당 뷰의 바깥쪽 여백을 지정
@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
 .right[
 <img src="images/eventlistenerex.png" width=220>
 ]
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/BasicUI/app/src/main/java/com/example/jyheo/basicui/MainActivity.java]
+.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/java/com/example/jyheo/basicui/MainActivity.java]
 
 ???
 
