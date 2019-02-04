@@ -320,7 +320,6 @@ padding은 해당 뷰의 내부 여백을 지정
     <Button android:layout_width="100dp" android:layout_height="wrap_content"
             android:text="right"
             android:layout_gravity="right"/>
-
     <Button android:layout_width="100dp" android:layout_height="wrap_content"
             android:text="center_v"
             android:layout_gravity="center_vertical"/>
@@ -330,7 +329,6 @@ padding은 해당 뷰의 내부 여백을 지정
     <Button android:layout_width="100dp" android:layout_height="wrap_content"
             android:text="center_v | right"
             android:layout_gravity="center_vertical|right"/>
-
     <Button android:layout_width="100dp" android:layout_height="wrap_content"
             android:text="bottom"
             android:layout_gravity="bottom"/>

@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
 ---
 ## 문자열 배열 리소스 사용법
-* 고정적인 문자열의 경우, 리소스에 정의해 놓고 사용  
-  values/arrays.xml
+- 고정적인 문자열의 경우, 리소스에 정의해 놓고 사용  
+  values/arrays.xml  
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -144,8 +144,7 @@ public class MainActivity extends AppCompatActivity {
     </string-array>
 </resources>
 ```
-
-* 리소스로부터 어댑터 생성
+- 리소스로부터 어댑터 생성  
 ```java
 ArrayAdapter<CharSequence> adapt = ArrayAdapter.createFromResource(this,
                       R.array.items, android.R.layout.simple_list_item_1);
@@ -155,7 +154,7 @@ ArrayAdapter<CharSequence> adapt = ArrayAdapter.createFromResource(this,
 
 ---
 ## 항목을 위한 사용자 정의 TextView
-* ListView 항목의 TextView를 위한 템플릿  
+- ListView 항목의 TextView를 위한 템플릿  
   /res/layout/item.xml 생성  
 ```xml
 <TextView
@@ -166,8 +165,7 @@ ArrayAdapter<CharSequence> adapt = ArrayAdapter.createFromResource(this,
     android:gravity="center"
     android:padding="10dp" />
 ```
-
-* 템플릿 레이아웃(item.xml)을 이용하여 ArrayAdapter 준비
+- 템플릿 레이아웃(item.xml)을 이용하여 ArrayAdapter 준비  
 ```java
 ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.item, items);
 ```
