@@ -299,3 +299,33 @@ public abstract class MyRoomDatabase extends RoomDatabase {
 - https://github.com/jyheo/android-lecture-examples/tree/master/room 
 
 <img src="images/room_ex.png" width=40% style="top:200px; right:100px; position:absolute">
+
+---
+## sqlite3 in adb shell
+
+```bash
+*C:\Users\jyheo>adb shell
+*generic_x86:/ $ run-as com.example.roomexample
+generic_x86:/data/data/com.example.roomexample $ ls
+cache code_cache databases
+*generic_x86:/data/data/com.example.roomexample $ cd databases
+generic_x86:/data/data/com.example.roomexample/databases $ ls
+school_database school_database-shm school_database-wal
+*generic_x86:/data/data/com.example.roomexample/databases $ sqlite3 school_database
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+sqlite> .table
+android_metadata   room_master_table  student_table      teacher_table
+*sqlite> select * from student_table;
+16|James
+17|John
+18|Tom
+19|Jessie
+21|Eli
+22|Sophia
+23|Elena
+24|test
+25|test
+26|fgdsfgsdfg
+sqlite>
+```
