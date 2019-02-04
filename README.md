@@ -35,6 +35,7 @@ Lecture Notes | Labs
 [ActionBar and Navigation](https://jyheo.github.io/android-lecture/lecture-notes/actionbar-navigation.html) | [Lab](https://jyheo.github.io/android-lecture/labs/actionbar-navigation-lab.html)
 [Data Storage](https://jyheo.github.io/android-lecture/lecture-notes/data-storage.html) | [Lab](https://jyheo.github.io/android-lecture/labs/data-storage-lab.html)
 [SQLite](https://jyheo.github.io/android-lecture/lecture-notes/sqlite.html)  | [Lab](https://jyheo.github.io/android-lecture/labs/sqlite-lab.html)
+[Room](https://jyheo.github.io/android-lecture/lecture-notes/room.html) | 
 [Animation](https://jyheo.github.io/android-lecture/lecture-notes/animation.html) | [Lab](https://jyheo.github.io/android-lecture/labs/animation-lab.html)
 [Custom View](https://jyheo.github.io/android-lecture/lecture-notes/custom-view.html) | [Lab](https://jyheo.github.io/android-lecture/labs/custom-view-lab.html)
 [Broadcast](https://jyheo.github.io/android-lecture/lecture-notes/broadcast.html) | [Lab](https://jyheo.github.io/android-lecture/labs/broadcast-lab.html)
