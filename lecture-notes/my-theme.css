@@ -1,0 +1,42 @@
+/* @theme my-theme */
+
+@import 'default';
+
+  section {
+      justify-content: start;
+      padding-top: 50px;
+  }
+ 
+  section.lead {
+    justify-content: center;
+  }
+  
+  section.lead h1 {
+    font-size: 100px;
+    color: #09c;
+    text-align: center;
+  }
+
+  section.lead h2 {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  section.lead h3 {
+    font-size: 30px;
+    text-align: center;
+  }
+
+
+  li li {
+    font-size: 90%;
+  }
+
+  li li li {
+    font-size: 80%;
+  }
+
+  table {
+      font-size: 80%;
+  }
+  

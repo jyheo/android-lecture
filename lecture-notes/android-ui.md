@@ -1,12 +1,19 @@
-layout: true
-.top-line[]
-
 ---
-class: center, middle
+marp: true
+theme: my-theme
+paginate: true
+headingDivider: 2
+header: 
+footer: https://github.com/jyheo/android-lecture
+backgroundColor: #fff
+backgroundImage: url('images/background.png')
+---
 
 # 안드로이드 UI
+<!-- _class: lead -->
+### 허준영(jyheo@hansung.ac.kr)
 
----
+
 ## 화면 크기를 고려한 디자인
 
 * 기기마다 다른 크기, 해상도, 비율
@@ -22,9 +29,9 @@ class: center, middle
 
 UI요소: Button, EditText, TextView, LinearLayout, ...
 
-<img src="images/androidui.png" style="top:150px; right:100px; position:absolute">
+![bg right:25% 80%](images/androidui.png)
 
----
+
 ## UI 요소 크기
 * 모든 UI요소들은 가로,세로 크기를 지정할 수 있음
 * layout_width
@@ -34,37 +41,36 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
   * wrap_content
     * 특정 값 – 예를 들어 300dp
 
----
+
 ## UI 요소 크기 - Example
 
-.left-column-70[
 ```xml
 <Button
-*   android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Width = Match Parent"/>
 
 <Button
-*   android:layout_width="wrap_content"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Width = wrap content"/>
 
 <Button
-*   android:layout_width="100dp"
+    android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:text="Width = 100dp"/>
 ```
-]
 
-<img src="images/ui_size.png" width=250 style="top:150px; right:100px; position:absolute">
+![bg right:30% 80%](images/ui_size.png)
 
-.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/ui_component_size.xml]
+[https://github.com/jyheo/android-lecture-examples/...](https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/ui_component_size.xml)
 
----
+
 ## 레이아웃(Layout)
 
+
 레이아웃은 사용자 인터페이스에 대한 시각적 구조를 정의합니다. 예컨대 액티비티 또는 앱 위젯에 대한 UI가 이에 해당됩니다.
-.right[출처: https://developer.android.com/guide/topics/ui/declaring-layout.html]
+출처: https://developer.android.com/guide/topics/ui/declaring-layout.html
 
 * 레이아웃 내에 자식 뷰(UI요소 들)의 배치 방법을 결정함
   * 안드로이드에서 모든 UI요소들은 뷰(View)를 상속 받음
@@ -74,26 +80,19 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
   * RelativeLayout
   * FrameLayout, GridLayout, TableLayout
 
----
+
 ## LinearLayout or RelativeLayout
 
-.left-column-70[
 * LinearLayout(선형 레이아웃)
   * 자식 뷰들을 하나의 가로 방향 또는 세로 방향 행으로 정리하는 레이아웃
-
-
+  ![](images/linearlayout.png)
 * RelativeLayout(상대 레이아웃)
   * 자식 뷰들을 서로 관련지어 나타냄(자식 A가 자식 B의 왼쪽, 자식 C가 자식 B의 왼쪽에 정렬)
-]
+  ![](images/relativelayout.png)
 
-.right[
-<img src="images/linearlayout.png" width=220><br/>
-<img src="images/relativelayout.png" width=220>
-]
 
----
+
 ## LinearLayout - Example(1/2)
-.left-column-70[
 ```xml
 <LinearLayout
     android:layout_width="match_parent"
@@ -101,10 +100,10 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
     android:orientation="vertical">
 
     <LinearLayout
-*       android:layout_width="match_parent"
-*       android:layout_height="match_parent"
-*       android:layout_weight="1"
-*       android:orientation="vertical"
+→       android:layout_width="match_parent"
+→       android:layout_height="match_parent"
+→       android:layout_weight="1"
+→       android:orientation="vertical"
         android:background="#aa00ff">
         <Button
             android:layout_width="wrap_content"
@@ -121,29 +120,20 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
             android:text="Button 3"/>
     </LinearLayout>
 ```
-]
 
-.right[
-<img src="images/linearlayoutex.png" width=220>
-]
+![bg right:30% 80%](images/linearlayoutex.png)
 
-<img src="images/arrowright.png" width=50 style="top:200px; right:350px; position:absolute;">
-
-.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/activity_main.xml]
-
-???
-
-* layout_weight=1이란 값을 눈여겨 볼것
+<!--
+* layout_weight=1이란 값을 눈여겨 볼것 
+-->
 
 ---
-## LinearLayout - Example(2/2)
-.left-column-70[
 ```xml
     <LinearLayout
-*       android:layout_width="match_parent"
-*       android:layout_height="match_parent"
-*       android:layout_weight="1"
-*       android:orientation="horizontal"
+→       android:layout_width="match_parent"
+→       android:layout_height="match_parent"
+→       android:layout_weight="1"
+→       android:orientation="horizontal"
         android:background="#00aaff">
         <Button
             android:layout_width="wrap_content"
@@ -161,23 +151,20 @@ UI요소: Button, EditText, TextView, LinearLayout, ...
 
 </LinearLayout>
 ```
-]
 
-.right[
-<img src="images/linearlayoutex.png" width=220>
-]
+![bg right:30% 80%](images/linearlayoutex.png)
 
-<img src="images/arrowright.png" width=50 style="top:400px; right:350px; position:absolute;">
+[https://github.com/jyheo/android-lecture-examples/...](https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/activity_main.xml)
 
-.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/activity_main.xml]
-
-???
+<!--
 * 앞의 layout_weight=1과 동일한 값이 있음, 이는 앞의 LinearLayout과 이 LinearLayout의 크기 비율이 1:1이란 것을 의미함, 따라서 화면에서 절반씩 자리를 차지하고 있게 됨
+-->
 
----
-class: center, middle
+
 ## 뷰(View)와 ViewGroup
----
+<!-- _class: lead -->
+
+
 ## 뷰(View)
 * 모든 UI요소들은 뷰(View)를 상속하여 구현
 * 윈도우 GUI에서 윈도우(CWnd)와 동일한 개념
@@ -188,88 +175,73 @@ class: center, middle
   * Gone – 자리 차지도 안함
   * Invisible – 자리는 있지만 보이지는 않음
 
----
+
 ## View/ViewGroup으로 UI 구성
 * ViewGroup는 View이지만 다른 View를 포함할 수 있는 View
   * LinearLayout이나 RelativeLayout도 ViewGroup
 * View로 구성된 트리로 UI가 구성됨
-.center[![View Group](images/viewgroup.png)]
+![](images/viewgroup.png)
 
----
+
 ## 자주 사용되는 View(UI요소들)
-.left-column-50[
 * Views
-  * TextView
-  * EditText
+  * TextView, EditText
   * Button
-  * RadioButton
-  * CheckBox
-  * Switch
+  * RadioButton, CheckBox, Switch
   * ImageView
   * WebView
   * ViewStub
-]
-.right-column-50[
 * ViewGroups
-  * ScrollView
-  * ViewPager
-
-
+  * ScrollView, ViewPager
 * AdapterViews
-  * Spinner
-  * ListView
-  * GridView
-]
+  * Spinner, ListView, GridView
 
----
+
 ## TextView와 EditText
 * 기본적인 텍스트 표시/입력 뷰
 * TextView – 사용자가 수정할 수 없으나 코드에서 텍스트를 변경할 수 있음
 * EditText – 사용자가 입력 가능함
+  ![](images/edittext.png)
 
-![EditText](images/edittext.png)
 
----
 ## Button
 * 일반적으로 많이 사용되는 푸시 버튼
 * 버튼내에 텍스트, 아이콘을 표시할 수 있음
   * 버튼 전체를 이미지로 그리기 위해서는 ImageButton 사용
 * 레이아웃 XML에 버튼 속성으로 onClick에 on-click 이벤트 핸들러를 지정할 수 있음
+  ![](images/button.png)
 
-![Button](images/button.png)
 
----
 ## CompoundButton
 * 두 개의 상태를 갖는 버튼
   * 체크/미체크, 온/오프
 
-CompoundButton | 모양  
--------------|------------------------------------
-ToggleButton | ![](images/togglebutton.png)
-Switch       | ![](images/switchbutton.png)
-CheckBox     | ![](images/checkbox.png)
-RadioButtons | ![](images/radiobutton.png)
+  CompoundButton | 모양  
+  -------------|------------------------------------
+  ToggleButton | ![h:30px](images/togglebutton.png)
+  Switch       | ![](images/switchbutton.png)
+  CheckBox     | ![h:100px](images/checkbox.png)
+  RadioButtons | ![h:50px](images/radiobutton.png)
 
----
-class: center, middle
 
-## Margin, Padding, Gravity
 
----
+# Margin, Padding, Gravity
+<!-- _class: lead -->
+
 ## Margin, padding
-.cetner[![Margin, Padding](images/marginpadding.png)]
+![](images/marginpadding.png)
 
----
+
 ## Margin, Padding, Gravity Example
-.left-column-70[
+
 ```xml
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
     android:orientation="vertical"
-*   android:layout_margin="10dp"
-*   android:padding="10dp"
+→   android:layout_margin="10dp"
+→   android:padding="10dp"
     android:background="#aa00ff">
     <Button
         android:layout_width="match_parent"
@@ -277,38 +249,32 @@ class: center, middle
         android:text="Button"/>
 </LinearLayout>
 ```
-]
 
-.right[
-<img src="images/marginpaddinggravity.png" width=220>
-]
+![bg right:30% 80%](images/marginpaddinggravity.png)
 
-<img src="images/arrowright.png" width=50 style="top:200px; right:350px; position:absolute;">
+[https://github.com/jyheo/android-lecture-examples/...](https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/margin_padding_gravity.xml)
 
-.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/res/layout/margin_padding_gravity.xml]
-
-???
+<!--
 layout_margin은 해당 뷰의 바깥쪽 여백을 지정
 padding은 해당 뷰의 내부 여백을 지정
 배경색이 보라색인 레이아웃의 layout_margin=10dp이므로 보라색 바깥쪽에 회색이 약간 보이고
 내부의 버튼의 크기가 match_parent임에도 불구하고 레이아웃의 padding=10dp이므로 레이아웃의 배경색인 보라색이 약간 보이게 되는 것임
+-->
 
----
 ## Gravity
 * 부모 뷰 안에 포함되는 자식 뷰의 위치를 결정하는 속성
 * LinearLayout/FrameLayout의 자식 뷰에서 layout_gravity 속성으로 흔히 사용
 * 가능한 값들들
-  * BOTTOM – 부모 뷰에서 아래쪽에 위치시킴
-  * CENTER – 부모 뷰의 중앙에 위치시킴
-  * CENTER_HORIZONTAL – 부모 뷰의 수평 기준으로 중앙에 위치시킴
-  * CENTER_VERTICAL – 부모 뷰의 수직 기준으로 중앙에 위치시킴
-  * END – 부모 뷰에서 텍스트 방향의 끝(한글이나 영어의 경우는 오른쪽)에 위치시킴
-  * LEFT – 부모 뷰에서 왼쪽에 위치시킴
-  * RIGHT – 부모 뷰에서 오른쪽에 위치시킴
-  * TOP – 부모 뷰에서 위쪽에 위치시킴
+  - BOTTOM – 부모 뷰에서 아래쪽에 위치시킴
+  - CENTER – 부모 뷰의 중앙에 위치시킴
+  - CENTER_HORIZONTAL – 부모 뷰의 수평 기준으로 중앙에 위치시킴
+  - CENTER_VERTICAL – 부모 뷰의 수직 기준으로 중앙에 위치시킴
+  - END – 부모 뷰에서 텍스트 방향의 끝(한글이나 영어의 경우는 오른쪽)에 위치시킴
+  - LEFT – 부모 뷰에서 왼쪽에 위치시킴
+  - RIGHT – 부모 뷰에서 오른쪽에 위치시킴
+  - TOP – 부모 뷰에서 위쪽에 위치시킴
 
 ---
-.left-column-70[
 ```xml
 <FrameLayout/>
     <Button android:layout_width="100dp" android:layout_height="wrap_content"
@@ -340,32 +306,28 @@ padding은 해당 뷰의 내부 여백을 지정
             android:layout_gravity="right|bottom"/>
 </FrameLayout>
 ```
-]
 
-.right[
-<img src="images/marginpaddinggravity.png" width=220>
-]
+![bg right:30% 80%](images/marginpaddinggravity.png)
 
-<img src="images/arrowright.png" width=50 style="top:350px; right:350px; position:absolute;">
-
-???
+<!--
 실행 화면의 아래쪽 빨간색 배경의 레이아웃에 대한 xml코드임
+-->
 
----
-class: center, middle
-## 이벤트 처리
 
----
+
+# 이벤트 처리
+<!-- _class: lead -->
+
+
 ## 이벤트 리스너(Event Listeners)
 * 이벤트를 처리할 콜백 메소드를 포함하는 인터페이스
 * 사용자가 뷰를 사용하여 상호작용할 때 안드로이드 프레임워크에 의해 호출됨
   * 버튼을 눌렀을 때 처리
   * 리스트 뷰에서 항목을 선택했을 때 처리
   * ...
+  ![](images/eventlistener.png)
 
-<img src="images/eventlistener.png" width=420 style="bottom: 50px; right: 100px; position: absolute">
 
----
 ## Event Listener Interface
 * View.OnClickListener – 뷰를 클릭했을 때 콜백
 * View.OnLongClickListener – 뷰를 오래 눌렀을 때(롱 클릭) 콜백
@@ -374,25 +336,25 @@ class: center, middle
 * View.onTouchListener – 뷰를 터치했을 때, 땠을 때 등에 대한 콜백
 * View.onCreateContextMenu – 롱 클릭으로 컨텍스트 메뉴가 생성될 때 호출되는 콜백 인터페이스
 
-???
-
+<!--
 Click와 Touch의 차이? Click은 누른 상태에서 해당 View를 벗어나지 않고 릴리즈하면 발생하며 Touch는 누르는 순간 발생
+-->
 
----
+
 ## Event Listener Example
-.left-column-70[
-```java
+
+```java 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-*       setContentView(R.layout.activity_main);
+→       setContentView(R.layout.activity_main);
 
-*       Button btn = findViewById(R.id.button1);
-*       btn.setOnClickListener(new View.OnClickListener() {
+→       Button btn = findViewById(R.id.button1);
+→       btn.setOnClickListener(new View.OnClickListener() {
             @Override
-*           public void onClick(View view) {
+→           public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),
                         R.string.button_clicked_msg,
                         Toast.LENGTH_SHORT).show();
@@ -401,14 +363,12 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
-]
 
-.right[
-<img src="images/eventlistenerex.png" width=220>
-]
-.footnote[https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/java/com/example/jyheo/basicui/MainActivity.java]
+![bg right:30% 80%](images/eventlistenerex.png)
 
-???
+[https://github.com/jyheo/android-lecture-examples/...](https://github.com/jyheo/android-lecture-examples/blob/master/basic_ui/src/main/java/com/example/jyheo/basicui/MainActivity.java)
 
+<!--
 * MainActivity의 onCreate()는 일단은 main()함수 같이 프로그램의 시작 지점이라고 생각해두자.
 * findViewById()는 해당 ID의 UI요소를 찾아서 해당 객체를 리턴하는 Activity의 메소드임
+-->
