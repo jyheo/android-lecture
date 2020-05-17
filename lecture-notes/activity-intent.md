@@ -112,8 +112,7 @@ backgroundImage: url('images/background.png')
 
 * 시작하려는 액티비티(SecondActivity.class)를 지정하고 Intent 생성
     ```java
-    Intent intent = new Intent(getApplicationContext(),
-                            SecondActivity.class);
+    Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
     startActivity(intent);
     ```
 
@@ -130,9 +129,7 @@ backgroundImage: url('images/background.png')
 
 * 필요한 Action을 지정하고 Intent를 생성
     ```java
-    Intent intent = new Intent(Intent.ACTION_DIAL,
-                            Uri.parse("tel:114"));
-
+    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:114"));
     startActivity(intent);
     ```
 
@@ -161,9 +158,7 @@ backgroundImage: url('images/background.png')
 * FirstActivity에서 ThirdActivity로 인텐트를 보내고 결과 인텐트를 기다려서 받기
     ```java
     // 인텐트를 ThirdActivity로 보내기
-    Intent intent =
-            new Intent(getApplicationContext(),
-                        ThirdActivity.class);
+    Intent intent =new Intent(getApplicationContext(), ThirdActivity.class);
     intent.putExtra("UserDefinedExtra", "Hello");
     startActivityForResult(intent, request_code);
     ```
@@ -187,8 +182,7 @@ backgroundImage: url('images/background.png')
 * FirstActivity에서 결과 인텐트 받기
     ```java
     // 결과 인텐트를 받기
-    protected void onActivityResult(
-        int request, int result, Intent data) {
+    protected void onActivityResult(int request, int result, Intent data) {
         ... 생략 ...
         data.getStringExtra("ResultString");
     }
