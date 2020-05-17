@@ -23,10 +23,9 @@ backgroundImage: url('images/background.png')
 
 ## RecyclerView
 * ListView의 더욱 향상되고 유연해진 버전
-    - 한정된 수의 뷰를 유지함으로써 매우 효율적으로 스크롤할 수 있는, 큰 데이터 집합을 표시하기 위한 컨테이너
-    - 런타임에 요소가 변경되는 데이터 컬렉션이 있는 경우  
-    RecyclerView 위젯을 사용
-    - 어댑터와 레이아웃 관리자를 지정하여 사용  
+    - 한정된 수의 뷰를 유지함으로써 매우 효율적으로 스크롤할 수 있음
+    - 런타임에 요소가 변경되는 데이터가 있는 경우 효과적으로 처리
+    - 어댑터, 뷰 홀더, 레이아웃 관리자를 지정하여 사용  
 ![](images/recyclerview2.png) 
 
 ![bg right:25% w:200](images/recyclerview.png)
@@ -147,15 +146,22 @@ backgroundImage: url('images/background.png')
     ```java
     class ViewHolder extends RecyclerView.ViewHolder {
         ItemBinding mBinding;
-
         ViewHolder(ItemBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
+            mBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int i = getAdapterPosition(); // 항목 인덱스
+                    if (i != RecyclerView.NO_POSITION)
+                        Log.i("RV", String.format("%d %s", i, mBinding.textSender.getText()));
+                }
+            });
         }
     }
     ```
     - ItemBinding은 자동 생성된 item.xml의 view binding 클래스 
-    - ViewHolder에 binding을 주기 전에 inflate해야 함
+    - 항목 View에 View.onClickListener를 등록하여 클릭 이벤트 처리
 
 
 ## 6. RecyclerView.Adapter 상속한 Adapter 클래스 생성
