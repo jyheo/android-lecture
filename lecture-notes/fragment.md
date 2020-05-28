@@ -29,14 +29,12 @@ backgroundImage: url('images/background.png')
 -->
 
 ## 프래그먼트 디자인
-* Android 3.0(API 레벨 11)부터 생겼음
 * 기본적으로 태블릿과 같은 큰 화면에서 보다 역동적이고 유연한 UI 디자인을 지원하는 것이 목적
 * 프래그먼트는 재사용 가능하며, 다른 UI요소처럼 액티비티의 구성 요소가 됨
     - **재사용을 염두에 두고 디자인하며, 한 프래그먼트를 또 다른 프래그먼트로부터 직접 조작하는 것은 삼가**  
+    - ViewModel 등을 이용하여 프래그먼트 간의 데이터 교환
 ![](images/fragment2.png)
-<!--
-어떤 프래그먼트에서 다른 프래그먼트를 제어하거나 데이터를 전달하기 위해서는 액티비티를 거치도록 만들어야 함
--->
+
 
 ## 라이프 사이클
 * onAttach:
@@ -49,6 +47,14 @@ backgroundImage: url('images/background.png')
 
 ![bg right:50% w:100%](images/fragment_lifecycle.png)
 
+## Library dependency in gradle
+* gradle (app)
+    ```
+    dependencies {
+        ...
+        implementation 'androidx.fragment:fragment:1.2.4'
+    }
+    ```
 
 ## 프래그먼트 클래스
 * Fragment를 상속 받아서 생성
@@ -66,62 +72,52 @@ backgroundImage: url('images/background.png')
         }
     }
     ```
+* Android Studio에서 File > New > Fragment 에서 간단히 추가할 수 있음
 
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/java/com/jyheo/fragmentbasic/FirstFragment.java]
-
-<!--
-**Tip!** 안드로이드 스튜디오에서 File > New > Fragment > Fragment(Blank) 를 이용하여 쉽게 생성할 수 있음(다만, 이때에는 support v4 Fragment로 생성됨)
--->
 
 ## 프래그먼트 레이아웃
 * layout/fragment_first.xml
   - 액티비티의 레이아웃과 동일한 방법으로 작성
-
-```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent“
-    android:orientation="vertical"
-    android:background=“#ffff00">
-
-    <TextView
+    ```xml
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-</LinearLayout >
-```
+        android:layout_height="match_parent“
+        android:orientation="vertical"
+        android:background=“#ffff00">
 
-.footnote[https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/res/layout/fragment_first.xml]
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment" />
+    </LinearLayout >
+    ```
 
 ## 액티비티에 프래그먼트 추가
 * 액티비티 레이아웃에 정적으로 추가(activity_main.xml)
+    ```xml
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <FrameLayout
-        android:id="@+id/fragment“
-        android:layout_width="match_parent”   android:layout_height="match_parent“ />
-*       <fragment
-*           android:name="com.jyheo.fragmentbasic.FirstFragment"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!" />
+
+    *   <androidx.fragment.app.FragmentContainerView
+    *       android:id="@+id/fragment"
+    *       android:name="com.jyheo.fragmentbasic.FirstFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent“/>
-    </FrameLayout>
-</LinearLayout>
-```
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+    ```
 
 ![bg right:30% h:70%](images/fragmentbasic.png)
-
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/res/layout/activity_main.xml
 
 
 ## 프래그먼트 동적 교체
@@ -130,343 +126,161 @@ https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/
 ```java
 public class MainActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-*       final FragmentTransaction fragmentTransaction =
-*    					 getFragmentManager().beginTransaction();
-*       fragmentTransaction.replace(R.id.fragment, new SecondFragment());
-*       fragmentTransaction.addToBackStack(null);
-        // addToBackStack()을 호출해야 백 버튼 누를 때 이전 프래그먼트로 되돌아가기가 됨
-*       fragmentTransaction.commit();
+    void switchFragment() {
+        FragmentTransaction fragmentT = 
+                getSupportFragmentManager().beginTransaction();
+        fragmentT.replace(R.id.fragment, new SecondFragment());
+        fragmentT.addToBackStack(null);
+            // addToBackStack()을 호출해야 백 버튼 누를 때,
+            //    이전 프래그먼트로 되돌아가기가 됨
+        fragmentT.commit();
     }
 }
 ```
 
 ![bg right:30% h:70%](images/fragmentbasic2.png)
 
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/java/com/jyheo/fragmentbasic/MainActivity.java
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/java/com/jyheo/fragmentbasic/SecondFragment.java
+## 프래그먼트 동적 교체
+* 전체 소스
+    - https://github.com/jyheo/android-java-examples/tree/master/FragmentBasic
 
 
-## 프래그먼트 교체 예제(1/4)
-* 버튼을 누르면 해당 프래그먼트가 나타남
-![](images/fragmentreplace.png)
+## Fragment와 ViewModel
+* TitlesFragment와 DetailsFragment
+* TitlesFragment 에서 선택하면 DetailsFragment에서 선택한 항목의 내용이 표시됨
+* 두 fragment 사이의 데이터 전달을 위해 ViewModel을 사용
+* ViewModel을 사용하기 위해 gradle에 lifecycle 라이브러리 추가
+    ```
+    dependencies {
+        ...
+        implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    }
+    ```    
 
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/java/com/jyheo/fragmentbasic/FragSwitchActivity.java
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentBasic/app/src/main/res/layout/activity_frag_switch.xml
+![bg right:30% h:70%](images/fragment_viewmodel.png) 
 
 
-## 프래그먼트 교체 예제(2/4)
-* 액티비티
+## Fragment와 ViewModel
+* ViewModel
+    - View를 위한 데이터 모델, activity나 fragment와 연관된 데이터 모델
+    - Activity나 fragment가 완전히 메모리에서 사라질 때 까지 데이터 유지, Activity가 회전으로 다시 만들어질 때에도 데이터를 유지함
+    - 보통 LiveData와 같이 사용
+* LiveData
+    - Observer 패턴
+    - 데이터가 변경될 때 자동으로 지정한 객체의 onChanged() 메소드 호출
+
+
+## Fragment와 ViewModel
+* MyViewModel.java
     ```java
-    public class FragSwitchActivity extends AppCompatActivity {
+    public class MyViewModel extends ViewModel {
+        private final MutableLiveData<Integer> selected = new MutableLiveData<>();              
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-    *       setContentView(R.layout.activity_frag_switch);
-
-            Button button = (Button)findViewById(R.id.button_first);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-    *               switchFragment(0);
-                }
-            });
-            button = (Button)findViewById(R.id.button_second);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-    *               switchFragment(1);
-                }
-            });
+        public MyViewModel() {
+            selected.setValue(-1);
         }
+
+        public void select(Integer item) {
+            selected.setValue(item);
+        }
+
+        public LiveData<Integer> getSelected() {
+            return selected;
+        }
+    }
     ```
 
-<!--
-First버튼과 Second버튼에 대한 클릭 리스너를 만들고, 각각 switchFragment()에 대해 0과 1을 인자로 주어 호출함
--->
-
-## 프래그먼트 교체 예제(3/4)
-* layout/activity_frag_switch.xml
+## Fragment와 ViewModel
+* 액티비티 레이아웃
     ```xml
-    *<LinearLayout ...
-        android:orientation="vertical">
-    *   <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-    *       <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FirstFrag"
-                android:id="@+id/button_first"/>
-    *       <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SecondFrag"
-                android:id="@+id/button_second"/>
-        </LinearLayout>
-    *   <FrameLayout    참고:FrameLayout 대신 다른 Layout을 사용해도 됨
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ff00ff"
-    *       android:id="@+id/fragment">
-        </FrameLayout>
-    </LinearLayout>
-    ```
-
-![bg right:30% h:70%](images/fragmentreplace2.png)
-
-
-## 프래그먼트 교체 예제(4/4)
-* switchFragment()
-
-```java
-final FirstFragment firstFragment = new FirstFragment();
-final SecondFragment secondFragment = new SecondFragment();
-
-*protected void switchFragment(int id) {
-    final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-    if (id == 0)
-*       fragmentTransaction.replace(R.id.fragment, firstFragment);
-    else
-*       fragmentTransaction.replace(R.id.fragment, secondFragment);
-
-    fragmentTransaction.commit();
-}
-```
-
-
-## 화면 방향/크기와 프래그먼트 활용
-* TitlesFragment 와 DetailsFragment  
-![h:200px](images/fragmentex_main.png) ![h:400px](images/fragmentex_maindetail.png) ![h:400px](images/fragmentex_large.png)
-<!--
-왼쪽(가로보기, landscape)은 좌측에 TitlesFragment가 우측에 DetailsFragment가 표시되는 형태이고,
-가운데(세로보기, portrait)는 TitlesFragment만 보이다가 항목을 선택하면 DetailsFragment만 표시된다.
-오른쪽(크기=large)은 태블릿용 레이아웃으로 TitlesFragment와 DetailsFragment가 모두 표시되는 형태로 landscape와 유사하다.
--->
-
-## 화면 방향/크기와 프래그먼트 활용
-* 액티비티에 가로보기(Landscape) 레이아웃을 추가
-  - res/layout 에서 마우스 오른쪽 클릭, 팝업 메뉴 보기
-    - New > Layout resource file
-    - Qualifiers에서 Orientation - Landscape 선택
-    - 파일 이름은 원래 있던 것과 동일하게 activity_main.xml
-
-**주의!** 화면 방향을 바꾸면 액티비티가 새로 만들어짐. 당연히 프래그먼트도 다시 만들어짐
-
-.footnote[예제 프로젝트 파일: https://github.com/jyheo/AndroidTutorial/tree/master/FragmentExample]
-
-
-
-## 화면 방향/크기와 프래그먼트 활용
-* 액티비티에 태블릿용(large) 레이아웃을 추가
-  - res/layout 에서 마우스 오른쪽 클릭, 팝업 메뉴 보기
-    - New > Layout resource file
-    - Qualifiers에서 Size - large 선택
-    - 파일 이름은 원래 있던 것과 동일하게 activity_main.xml
-
-**참고** 화면의 크기에 따라(일반적으로 폰은 normal, 태블릿은 large이상임) 해당되는 레이아웃 파일을 알아서 사용하게 됨
-
-
-## 화면 방향과 프래그먼트 활용
-* Portrait 용 레이아웃 layout/activity_main.xml
-    ```xml
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"                                    
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:name="com.jyheo.fragmentexample.TitlesFragment"
             android:id="@+id/titles"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    </LinearLayout>
-    ```
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#3F51B5" />
 
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/res/layout/activity_main.xml
-
-
-## 화면 방향과 프래그먼트 활용
-* Landscape 용 레이아웃 layout-land/activity_main.xml
-* Large 용 레이아웃 layout-large/activity_main.xml
-    ```xml
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <fragment
-            android:name="com.jyheo.fragmentexample.TitlesFragment"
-            android:id="@+id/titles"
-            android:layout_weight="1"
-            android:layout_width="0px"
-            android:layout_height="match_parent" />
-
-        <FrameLayout               [DetailsFragment를 동적으로 추가할 위치]
+        <androidx.fragment.app.FragmentContainerView
+            android:name="com.jyheo.fragmentexample.DetailsFragment"
             android:id="@+id/details"
-            android:layout_weight="2"
-            android:layout_width="0px"
-            android:layout_height="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
     ```
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/res/layout-land/activity_main.xml
 
 
-## 화면 방향과 프래그먼트 활용
+## Fragment와 ViewModel
 * TitlesFragment.java
     ```java
     public class TitlesFragment extends Fragment {
 
-        private int mCurCheckPosition = -1; // 선택한 항목의 위치
         private FragmentTitlesBinding binding;
-        private OnTitleSelectedListener mTitleSelectedListener;
+        private MyViewModel model;
 
         public TitlesFragment() { }
 
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             binding = FragmentTitlesBinding.inflate(inflater, container, false);
-            return binding.getRoot();
-        }
 
-        public interface OnTitleSelectedListener {  // 액티비티로 메시지를 전달하기 위한 인터페이스
-            void onTitleSelected(int i, boolean restoreSaved);
-        }
-
-        void setOnTitleSelectedListener(OnTitleSelectedListener listener) {
-            mTitleSelectedListener = listener;
-        }
-
-    ```
----
-
-* TitlesFragement.java 계속
-    ```java
-        @Override
-        public void onActivityCreated(Bundle savedInstanceState) {
-            super.onActivityCreated(savedInstanceState);
-
-            binding.listview.setAdapter(new ArrayAdapter<String>(getContext(),
-                    android.R.layout.simple_list_item_activated_1, Shakespeare.TITLES));
+    *       model = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
+            binding.listview.setAdapter(new ArrayAdapter<>(requireContext(),android.R.layout.simple_list_item_activated_1,
+                                         Shakespeare.TITLES));
             binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    mCurCheckPosition = i;
-                    if (mTitleSelectedListener != null)
-                        mTitleSelectedListener.onTitleSelected(i, false);
+    *               model.select(i);
                 }
             });
-
             binding.listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-            if (savedInstanceState != null)
-                mCurCheckPosition = savedInstanceState.getInt("curChoice", -1);
+            return binding.getRoot();
+        }
+    }
+    ```
 
-            binding.listview.setSelection(mCurCheckPosition);
-            binding.listview.smoothScrollToPosition(mCurCheckPosition);
+
+## Fragment와 ViewModel
+* DetailsFragment.java
+    ```java
+    public class DetailsFragment extends Fragment {
+        private FragmentDetailsBinding binding;
+
+        public DetailsFragment() { }
+
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            binding = FragmentDetailsBinding.inflate(inflater, container, false);
+            return binding.getRoot();
         }
 
         @Override
         public void onStart() {
             super.onStart();
-            if (mCurCheckPosition >= 0 && mTitleSelectedListener != null)
-                mTitleSelectedListener.onTitleSelected(mCurCheckPosition, true);
-        }
-
-        @Override
-        public void onSaveInstanceState(@NonNull Bundle outState) { // 프래그먼트가 사라질 때 선택 항목의 위치를 저장
-            super.onSaveInstanceState(outState);
-            outState.putInt("curChoice", mCurCheckPosition);
-        }
-    }
-    ```
-
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/java/com/jyheo/fragmentexample/TitlesFragment.java
-
-
-## 화면 방향과 프래그먼트 활용
-* MainActivity.java
-    ```java
-    public class MainActivity extends AppCompatActivity implements TitlesFragment.OnTitleSelectedListener{
-        boolean mDetailsEnabled;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-
-            TitlesFragment titlesFragment = (TitlesFragment)getSupportFragmentManager().findFragmentById(R.id.titles);
-            titlesFragment.setOnTitleSelectedListener(this);
-            mDetailsEnabled = findViewById(R.id.details) != null;
-        }
-
-        public void onTitleSelected(int i, boolean restoreSaved) {
-            if (mDetailsEnabled) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.details, new DetailsFragment(i)).commit();
-            } else {
-                if (!restoreSaved) {
-                    Intent intent = new Intent(this, DetailsActivity.class);
-                    intent.putExtra("index", i);
-                    startActivity(intent);
+    *       MyViewModel model = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
+    *       model.getSelected().observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer idx) {
+                    if (idx >= 0)
+                        binding.textview.setText(Shakespeare.DIALOGUE[idx]);
                 }
-            }
+            });
         }
     }
     ```
 
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/java/com/jyheo/fragmentexample/MainActivity.java]
-
-
-## 화면 방향과 프래그먼트 활용
-* DetailsFragment.java
-    ```java
-    public class DetailsFragment extends Fragment {
-        private FragmentDetailsBinding binding;
-        private int mIndex;
-
-        public DetailsFragment() { }
-        public DetailsFragment(int idx) { mIndex = idx; }
-
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                                Bundle savedInstanceState) {
-            binding = FragmentDetailsBinding.inflate(inflater, container, false);
-            binding.textview.setText(Shakespeare.DIALOGUE[mIndex]);
-            return binding.getRoot();
-        }
-
-    }
-    ```
-
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/java/com/jyheo/fragmentexample/DetailsFragment.java
-
-
-## 화면 방향과 프래그먼트 활용
-* DetailsActivity.java
-    ```java
-    public class DetailsActivity extends AppCompatActivity {
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_details);
-
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                finish();
-                return;
-            }
-
-            Intent intent = getIntent();
-            int idx = intent.getIntExtra("index", 0);
-            getSupportFragmentManager().beginTransaction().replace(R.id.details, new DetailsFragment(idx)).commit();
-        }
-    }
-    ```
-
-https://github.com/jyheo/AndroidTutorial/blob/master/FragmentExample/app/src/main/java/com/jyheo/fragmentexample/DetailsActivity.java
+## Fragment와 ViewModel
+* 전체 소스
+    - https://github.com/jyheo/android-java-examples/tree/master/FragmentExample
