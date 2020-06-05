@@ -15,7 +15,7 @@ backgroundImage: url('images/background.png')
 
 
 ## 콘텐츠 제공자(ContentProvider)
-* 콘텐츠 제공자는 구조화된 데이터 세트의 액세스를 관리
+* 콘텐츠 제공자는 구조화된 데이터 세트의 액세스를 관리, 다른 앱에서 데이터 접근 방법을 제공
 * 콘텐츠 제공자 내의 데이터에 액세스하고자 하는 경우, 애플리케이션의 Context에 있는 ContentResolver 객체를 사용
     - ContentResolver는 데이터의 CRUD(Create,Read, Update, Delete) 제공
     - getContentResolver() 메소드로 ContentResolver 객체 획득
