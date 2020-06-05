@@ -22,7 +22,15 @@ backgroundImage: url('images/background.png')
     - 콘텐츠 제공자를 나타내는 URI로 제공자 지정
 * Android 자체에 오디오, 동영상, 이미지 및 개인 연락처 정보 등의 데이터를 관리하는 콘텐츠 제공자가 포함되어 있음
     - 참고: android.provider 패키지
-* https://developer.android.com/guide/topics/providers/content-providers.html?hl=ko
+* https://developer.android.com/guide/topics/providers/content-provider-basics?hl=ko
+
+
+## 콘텐츠 제공자(ContentProvider)
+![](https://developer.android.com/guide/topics/providers/images/content-provider-interaction.png?hl=ko)
+
+<!--
+CursorLoader는 async data loader 방식으로 데이터 로딩을 비동기로 처리하여, 데이터 로딩이 완료되면 지정한 callback method가 호출됨
+-->
 
 
 ## ContentResolver#query
