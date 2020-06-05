@@ -9,23 +9,23 @@ backgroundColor: #fff
 backgroundImage: url('images/background.png')
 ---
 
-# 콘텐츠 리졸버(Content Resolver)
+# 콘텐트 리졸버(Content Resolver)
 <!-- _class: lead -->
 ### 허준영(jyheo@hansung.ac.kr)
 
 
-## 콘텐츠 제공자(ContentProvider)
-* 콘텐츠 제공자는 구조화된 데이터 세트의 액세스를 관리, 다른 앱에서 데이터 접근 방법을 제공
-* 콘텐츠 제공자 내의 데이터에 액세스하고자 하는 경우, 애플리케이션의 Context에 있는 ContentResolver 객체를 사용
+## 콘텐트 제공자(ContentProvider)
+* 콘텐트 제공자는 구조화된 데이터 세트의 액세스를 관리, 다른 앱에서 데이터 접근 방법을 제공
+* 콘텐트 제공자 내의 데이터에 액세스하고자 하는 경우, 애플리케이션의 Context에 있는 ContentResolver 객체를 사용
     - ContentResolver는 데이터의 CRUD(Create,Read, Update, Delete) 제공
     - getContentResolver() 메소드로 ContentResolver 객체 획득
-    - 콘텐츠 제공자를 나타내는 URI로 제공자 지정
-* Android 자체에 오디오, 동영상, 이미지 및 개인 연락처 정보 등의 데이터를 관리하는 콘텐츠 제공자가 포함되어 있음
+    - 콘텐트 제공자를 나타내는 URI로 제공자 지정
+* Android 자체에 오디오, 동영상, 이미지 및 개인 연락처 정보 등의 데이터를 관리하는 콘텐트 제공자가 포함되어 있음
     - 참고: android.provider 패키지
 * https://developer.android.com/guide/topics/providers/content-provider-basics?hl=ko
 
 
-## 콘텐츠 제공자(ContentProvider)
+## 콘텐트 제공자(ContentProvider)
 ![](https://developer.android.com/guide/topics/providers/images/content-provider-interaction.png?hl=ko)
 
 <!--
@@ -34,13 +34,13 @@ CursorLoader는 async data loader 방식으로 데이터 로딩을 비동기로 
 
 
 ## ContentResolver#query
-* CallLog.Calls 콘텐츠 제공자에게 query()하기
+* CallLog.Calls 콘텐트 제공자에게 query()하기
     - getContentResolver(): ContentResolver 객체 가져오기
-    - CallLog.Calls.CONTENT_URI: Call Log 콘텐츠 제공자의 URI
+    - CallLog.Calls.CONTENT_URI: Call Log 콘텐트 제공자의 URI
     ```java
     // 전화 기록(CallLog.Calls)를 질의하여 결과를 리턴
     Cursor cursor = getContentResolver().query(
-        CallLog.Calls.CONTENT_URI,          // 콘텐츠 제공자의 URI
+        CallLog.Calls.CONTENT_URI,          // 콘텐트 제공자의 URI
         new String[]{CallLog.Calls._ID, CallLog.Calls.NUMBER}, // 각 행에 포함될 열들
         null                                // 선택될 행들에 대한 조건
         null,                               // 조건에 필요한 인수
@@ -64,8 +64,8 @@ query()할 때 CallLog.Calls._ID 는 cursor adapter에 사용할 때 꼭 필요�
     - int delete(Uri url, String where, String[] selectionArgs);
 
 
-## 콘텐츠 제공자 접근 권한
-* 보통 특정 콘텐츠 제공자에 접근하기 위해 권한을 필요로 함
+## 콘텐트 제공자 접근 권한
+* 보통 특정 콘텐트 제공자에 접근하기 위해 권한을 필요로 함
 * CallLog.Calls의 데이터를 읽기(query) 위해서는 READ_CALL_LOG 권한 필요
     - 데이터를 변경(insert, update, delete)하기 위해서는 WRITE_CALL_LOG 권한 필요
 
