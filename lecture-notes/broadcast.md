@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             setContentView(binding.getRoot());
 
             mReceiver = new MySMSReceiver();
-            mReceiver.setOnSmsReceived(new SmsReceiver.OnSmsReceived() {
+            mReceiver.setOnSmsReceived(new MySMSReceiver.OnSmsReceived() {
                 @Override
                 public void onReceived(String msg) {
                     binding.textview.setText(msg);
