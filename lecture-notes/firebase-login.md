@@ -98,7 +98,7 @@ backgroundImage: url('images/background.png')
         mAuth = FirebaseAuth.getInstance();
     }
     ```
-    * [https://github.com/jyheo/android-java-examples/.../FirebaseTest/.../LoginActivity.java](https://github.com/jyheo/android-java-examples/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/LoginActivity.java)
+    * [github.com/jyheo/android-java-examples/.../FirebaseTest/.../LoginActivity.java](https://github.com/jyheo/android-java-examples/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/LoginActivity.java)
 
 
 ## Authentication
@@ -130,7 +130,7 @@ backgroundImage: url('images/background.png')
     ```java
     FirebaseAuth.getInstance().signOut();
     ```
-    - [https://github.com/jyheo/android-java-examples/.../FirebaseTest/.../MainActivity.java#L143](https://github.com/jyheo/android-java-examples/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/MainActivity.java#L143)
+    - [github.com/jyheo/android-java-examples/.../FirebaseTest/.../MainActivity.java#L143](https://github.com/jyheo/android-java-examples/blob/master/FirebaseTest/app/src/main/java/com/example/jyheo/firebasetest/MainActivity.java#L143)
 
 ## Authentication
 * 테스트를 위해 콘솔에서 계정 생성 가능(https://console.firebase.google.com)
