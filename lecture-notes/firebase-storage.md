@@ -96,8 +96,7 @@ backgroundImage: url('images/background.png')
 
 ## Remote Config
 * 앱의 동작을 원격 클라우드에서 변경할 수 있음
-![](images/firebaserc.png)
-![](images/firebaserc2.png)
+![](images/firebaserc.png) ![](images/firebaserc2.png)
 
 
 ## Remote Config
