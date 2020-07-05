@@ -53,11 +53,8 @@ backgroundImage: url('images/background.png')
 
 
 ## Firebase 시작하기
-* Connect to Firebase 버튼
-![](images/connectfirebase.png) 
-* 권한 요청 페이지가 뜨면 ‘허용＇  
-
-![bg right:30% height:80%](images/firebase_perm.png) 
+* Connect to Firebase 버튼, 권한 요청 페이지가 뜨면 '허용'
+![](images/connectfirebase.png) ![w:400](images/firebase_perm.png) 
 
 
 ## Firebase 시작하기

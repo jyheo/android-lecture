@@ -37,6 +37,11 @@
   }
 
   table {
-      font-size: 80%;
+    font-size: 80%;
   }
   
+  img {
+    vertical-align: text-top;
+    border-style: solid;
+    border-color: lightslategrey;
+  }
